@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | GrievAI – Government of India</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <style>
+    /* Dashboard-specific overrides */
+    .dash-nav-divider {
+      padding: 6px 18px;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 8px;
+    }
+    .dash-logout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 18px;
+      color: rgba(255,100,100,0.85);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      margin-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-family: var(--font-sans);
+      transition: background 0.2s;
+    }
+    .dash-logout:hover { background: rgba(255,80,80,0.08); }
+    .chart-bar-wrap { display:flex; align-items:flex-end; gap:8px; height:100px; }
+    .chart-bar {
+      flex:1;
+      background: linear-gradient(to top,var(--navy),var(--navy-light));
+      border-radius:3px 3px 0 0;
+      min-height:8px;
+      transition: height 0.5s ease;
+      position:relative;
+    }
+    .chart-bar:hover { background: linear-gradient(to top,var(--saffron),var(--saffron-light)); }
+    .chart-bar .bar-val {
+      position:absolute;
+      top:-20px;
+      left:50%;
+      transform:translateX(-50%);
+      font-size:0.65rem;
+      font-weight:700;
+      color:var(--navy);
+      white-space:nowrap;
+    }
+    .chart-labels { display:flex; gap:8px; margin-top:6px; }
+    .chart-labels span { flex:1; text-align:center; font-size:0.65rem; color:var(--text-muted); }
+    .donut-wrap { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+    .donut-legend { display:flex; flex-direction:column; gap:8px; }
+    .donut-legend-item { display:flex; align-items:center; gap:8px; font-size:0.82rem; }
+    .legend-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+  </style>
+</head>
+<body>
+  <div id="site-header-placeholder"></div>
+
+  <!-- Dashboard Layout -->
+  <div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="dash-sidebar">
+      <div class="user-info">
+        <div class="user-avatar" id="userAvatarLetter">C</div>
+        <h4 id="dashUserName">Citizen</h4>
+        <span class="user-role" id="dashUserRole">Citizen</span>
+      </div>
+
+      <ul class="dash-nav">
+        <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
+        <div class="dash-nav-divider">Services</div>
+        <li><a href="index.html#lodge">📝 Lodge Complaint</a></li>
+        <li><a href="track.html">🔍 Track Complaint</a></li>
+        <li><a href="status.html">📋 View Status</a></li>
+        <div class="dash-nav-divider" data-role="officer,admin">Management</div>
+        <li data-role="officer,admin"><a href="#">📂 Assigned Cases</a></li>
+        <li data-role="officer,admin"><a href="#">✅ Resolved Cases</a></li>
+        <li data-role="admin"><a href="#">👥 User Management</a></li>
+        <li data-role="admin"><a href="#">⚙️ System Settings</a></li>
+        <div class="dash-nav-divider">Information</div>
+        <li><a href="departments.html">🏛️ Departments</a></li>
+        <li><a href="faq.html">❓ FAQ</a></li>
+        <li><a href="help.html">📖 Help</a></li>
+        <li><a href="contact.html">📞 Contact</a></li>
+      </ul>
+      <button class="dash-logout" onclick="logout()" data-i18n="dash.logout">🚪 Logout</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dash-main">
+
+      <div class="dash-header">
+        <div>
+          <h2 id="dashTitle" data-i18n="dash.citizen">Citizen Dashboard</h2>
+          <span class="dash-date" id="dashDate"></span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="index.html#lodge" class="btn btn-primary" data-i18n="btn.lodge">📝 Lodge Complaint</a>
+          <a href="track.html" class="btn btn-outline-navy">🔍 Track</a>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card saffron">
+          <span class="kpi-value" data-count="12">12</span>
+          <div class="kpi-label">My Complaints</div>
+          <span class="kpi-change up">↑ 2 this month</span>
+        </div>
+        <div class="kpi-card green">
+          <span class="kpi-value" data-count="9">9</span>
+          <div class="kpi-label">Resolved</div>
+          <span class="kpi-change up">↑ 75% rate</span>
+        </div>
+        <div class="kpi-card blue">
+          <span class="kpi-value" data-count="2">2</span>
+          <div class="kpi-label">In Progress</div>
+          <span class="kpi-change">Active</span>
+        </div>
+        <div class="kpi-card red">
+          <span class="kpi-value" data-count="1">1</span>
+          <div class="kpi-label">Pending Review</div>
+          <span class="kpi-change down">Awaiting action</span>
+        </div>
+        <div class="kpi-card" data-role="officer,admin" style="display:none;">
+          <span class="kpi-value" data-count="248563">2,48,563</span>
+          <div class="kpi-label">Total Portal Complaints</div>
+          <span class="kpi-change up">↑ 12% YoY</span>
+        </div>
+        <div class="kpi-card green" data-role="officer,admin" style="display:none;">
+          <span class="kpi-value" data-count="213490">2,13,490</span>
+          <div class="kpi-label">Total Resolved</div>
+          <span class="kpi-change up">↑ 92% rate</span>
+        </div>
+        <div class="kpi-card blue" data-role="admin" style="display:none;">
+          <span class="kpi-value" data-count="4820">4,820</span>
+          <div class="kpi-label">Active Officers</div>
+          <span class="kpi-change">37 States</span>
+        </div>
+        <div class="kpi-card" data-role="admin" style="display:none;">
+          <span class="kpi-value" data-count="37">37</span>
+          <div class="kpi-label">States &amp; UTs</div>
+          <span class="kpi-change">100% Coverage</span>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid-2" style="gap:22px;margin-bottom:24px;">
+
+        <!-- Monthly Trend -->
+        <div class="card">
+          <div class="card-header">
+            <h3>📈 Monthly Complaint Trend (2024)</h3>
+          </div>
+          <div class="card-body">
+            <div style="padding-top:22px;">
+              <div class="chart-bar-wrap">
+                <div class="chart-bar" style="height:55px;"><span class="bar-val">1.8K</span></div>
+                <div class="chart-bar" style="height:62px;"><span class="bar-val">2.1K</span></div>
+                <div class="chart-bar" style="height:48px;"><span class="bar-val">1.6K</span></div>
+                <div class="chart-bar" style="height:75px;"><span class="bar-val">2.5K</span></div>
+                <div class="chart-bar" style="height:88px;"><span class="bar-val">2.9K</span></div>
+                <div class="chart-bar" style="height:65px;"><span class="bar-val">2.2K</span></div>
+                <div class="chart-bar" style="height:82px;"><span class="bar-val">2.7K</span></div>
+                <div class="chart-bar" style="height:95px;"><span class="bar-val">3.1K</span></div>
+                <div class="chart-bar" style="height:71px;"><span class="bar-val">2.4K</span></div>
+                <div class="chart-bar" style="height:90px;"><span class="bar-val">3.0K</span></div>
+                <div class="chart-bar" style="height:100px;background:linear-gradient(to top,var(--saffron),var(--saffron-light));"><span class="bar-val" style="color:var(--saffron);">3.3K</span></div>
+                <div class="chart-bar" style="height:83px;"><span class="bar-val">2.8K</span></div>
+              </div>
+              <div class="chart-labels">
+                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Department Distribution -->
+        <div class="card">
+          <div class="card-header">
+            <h3>🏛️ Complaints by Department</h3>
+          </div>
+          <div class="card-body">
+            <div class="donut-wrap">
+              <svg width="120" height="120" viewBox="0 0 42 42" style="flex-shrink:0;">
+                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#f0f4f8" stroke-width="6"/>
+                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#003366" stroke-width="6" stroke-dasharray="39 61" stroke-dashoffset="25"/>
+                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#FF6600" stroke-width="6" stroke-dasharray="29 71" stroke-dashoffset="-14"/>
+                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#1a7a3f" stroke-width="6" stroke-dasharray="13 87" stroke-dashoffset="-43"/>
+                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#1a6896" stroke-width="6" stroke-dasharray="11 89" stroke-dashoffset="-56"/>
+                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#b7791f" stroke-width="6" stroke-dasharray="8 92" stroke-dashoffset="-67"/>
+                <text x="21" y="23" text-anchor="middle" font-size="5" fill="#003366" font-weight="700">Depts</text>
+              </svg>
+              <div class="donut-legend">
+                <div class="donut-legend-item"><div class="legend-dot" style="background:#003366;"></div><span>Municipal – 39%</span></div>
+                <div class="donut-legend-item"><div class="legend-dot" style="background:#FF6600;"></div><span>Education – 29%</span></div>
+                <div class="donut-legend-item"><div class="legend-dot" style="background:#1a7a3f;"></div><span>Health – 13%</span></div>
+                <div class="donut-legend-item"><div class="legend-dot" style="background:#1a6896;"></div><span>Transport – 11%</span></div>
+                <div class="donut-legend-item"><div class="legend-dot" style="background:#b7791f;"></div><span>Police – 8%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Complaints Table -->
+      <div class="card" style="margin-bottom:24px;">
+        <div class="card-header">
+          <h3>📋 My Recent Complaints</h3>
+          <div style="display:flex;gap:8px;">
+            <a href="index.html#lodge" class="btn btn-primary btn-sm">+ New</a>
+            <a href="track.html" class="btn btn-outline-navy btn-sm">Track All</a>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Complaint ID</th>
+                <th>Subject</th>
+                <th>Department</th>
+                <th>Filed Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>GRIEVA/2024/783421</strong></td>
+                <td>Water supply disruption for 3 days</td>
+                <td>Municipal Corporation</td>
+                <td>18 Apr 2024</td>
+                <td><span class="badge badge-success">Resolved</span></td>
+                <td><a href="status.html" class="btn btn-sm btn-outline-navy">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>GRIEVA/2024/791235</strong></td>
+                <td>School teacher absent for 2 weeks</td>
+                <td>Education</td>
+                <td>15 Apr 2024</td>
+                <td><span class="badge badge-info">In Progress</span></td>
+                <td><a href="status.html" class="btn btn-sm btn-outline-navy">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>GRIEVA/2024/802817</strong></td>
+                <td>Pothole on main road – accident risk</td>
+                <td>Transport</td>
+                <td>10 Apr 2024</td>
+                <td><span class="badge badge-warning">Under Review</span></td>
+                <td><a href="status.html" class="btn btn-sm btn-outline-navy">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>GRIEVA/2024/814590</strong></td>
+                <td>Scholarship not credited – PM Vidya</td>
+                <td>Education</td>
+                <td>05 Apr 2024</td>
+                <td><span class="badge badge-success">Resolved</span></td>
+                <td><a href="status.html" class="btn btn-sm btn-outline-navy">View</a></td>
+              </tr>
+              <tr>
+                <td><strong>GRIEVA/2024/826003</strong></td>
+                <td>Garbage not collected – Colony Sector 4</td>
+                <td>Municipal</td>
+                <td>02 Apr 2024</td>
+                <td><span class="badge badge-navy">Pending</span></td>
+                <td><a href="status.html" class="btn btn-sm btn-outline-navy">View</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Officer/Admin View - Extra Table -->
+      <div class="card" data-role="officer,admin" style="margin-bottom:24px;display:none;">
+        <div class="card-header">
+          <h3>📂 Assigned Complaints (Officer View)</h3>
+          <span class="badge badge-info">24 Active</span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Complaint ID</th>
+                <th>Citizen</th>
+                <th>Issue</th>
+                <th>Priority</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GRIEVA/2024/834521</td>
+                <td>Rajesh Kumar</td>
+                <td>Hospital bed not available</td>
+                <td><span class="badge badge-error">High</span></td>
+                <td>25 Apr 2024</td>
+                <td><span class="badge badge-info">In Progress</span></td>
+                <td><button class="btn btn-sm btn-success">Update</button></td>
+              </tr>
+              <tr>
+                <td>GRIEVA/2024/835620</td>
+                <td>Priya Sharma</td>
+                <td>Teacher misconduct report</td>
+                <td><span class="badge badge-warning">Medium</span></td>
+                <td>30 Apr 2024</td>
+                <td><span class="badge badge-warning">Under Review</span></td>
+                <td><button class="btn btn-sm btn-success">Update</button></td>
+              </tr>
+              <tr>
+                <td>GRIEVA/2024/840012</td>
+                <td>Anil Gupta</td>
+                <td>Road repair pending 6 months</td>
+                <td><span class="badge badge-navy">Low</span></td>
+                <td>05 May 2024</td>
+                <td><span class="badge badge-navy">Pending</span></td>
+                <td><button class="btn btn-sm btn-success">Update</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Admin Stats -->
+      <div data-role="admin" style="display:none;">
+        <div class="grid-3" style="gap:20px;margin-bottom:24px;">
+          <div class="card" style="padding:20px;">
+            <h4 style="color:var(--navy);margin-bottom:14px;font-family:var(--font-serif);">📌 Top Complaint States</h4>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div>Uttar Pradesh <div style="height:8px;background:var(--light-gray);border-radius:4px;margin-top:4px;"><div style="width:78%;height:100%;background:var(--navy);border-radius:4px;"></div></div></div>
+              <div>Maharashtra <div style="height:8px;background:var(--light-gray);border-radius:4px;margin-top:4px;"><div style="width:62%;height:100%;background:var(--saffron);border-radius:4px;"></div></div></div>
+              <div>Bihar <div style="height:8px;background:var(--light-gray);border-radius:4px;margin-top:4px;"><div style="width:54%;height:100%;background:var(--navy);border-radius:4px;"></div></div></div>
+              <div>West Bengal <div style="height:8px;background:var(--light-gray);border-radius:4px;margin-top:4px;"><div style="width:41%;height:100%;background:var(--navy);border-radius:4px;"></div></div></div>
+            </div>
+          </div>
+          <div class="card" style="padding:20px;">
+            <h4 style="color:var(--navy);margin-bottom:14px;font-family:var(--font-serif);">⚡ System Health</h4>
+            <ul style="font-size:0.83rem;display:flex;flex-direction:column;gap:8px;">
+              <li style="display:flex;justify-content:space-between;"><span>Portal Uptime</span><span class="badge badge-success">99.9%</span></li>
+              <li style="display:flex;justify-content:space-between;"><span>API Response</span><span class="badge badge-success">120ms</span></li>
+              <li style="display:flex;justify-content:space-between;"><span>AI Accuracy</span><span class="badge badge-success">94.2%</span></li>
+              <li style="display:flex;justify-content:space-between;"><span>DB Load</span><span class="badge badge-info">42%</span></li>
+            </ul>
+          </div>
+          <div class="card" style="padding:20px;">
+            <h4 style="color:var(--navy);margin-bottom:14px;font-family:var(--font-serif);">🔔 Recent Alerts</h4>
+            <ul style="font-size:0.82rem;display:flex;flex-direction:column;gap:8px;color:var(--text-secondary);">
+              <li>⚠️ 234 complaints overdue escalation</li>
+              <li>✅ NIC backup completed successfully</li>
+              <li>🔵 New batch of 1,240 complaints AI-classified</li>
+              <li>📧 SMS gateway operational</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="grid-3" style="gap:16px;">
+        <a href="index.html#lodge" class="btn btn-primary" style="justify-content:center;padding:16px;">📝 Lodge New Complaint</a>
+        <a href="track.html" class="btn btn-navy" style="justify-content:center;padding:16px;">🔍 Track Complaint</a>
+        <a href="status.html" class="btn btn-outline-navy" style="justify-content:center;padding:16px;">📊 View Status</a>
+      </div>
+
+    </main>
+  </div><!-- end dashboard-layout -->
+
+  <div id="site-footer-placeholder"></div>
+  <script src="js/lang.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script>
+    // Set today's date
+    document.getElementById('dashDate').textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    // Set avatar letter
+    const role = sessionStorage.getItem('grievai_role') || 'citizen';
+    const avatarMap = { citizen:'C', officer:'O', admin:'A' };
+    const avatarEl = document.getElementById('userAvatarLetter');
+    if (avatarEl) avatarEl.textContent = avatarMap[role] || 'U';
+  </script>
+</body>
+</html>
