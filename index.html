@@ -11,23 +11,23 @@
   <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
-
+ 
   <!-- Header Placeholder -->
   <div id="site-header-placeholder"></div>
-
+ 
   <!-- Breadcrumb -->
   <div class="breadcrumb-bar">
     <div class="breadcrumb-inner">
       <a href="index.html">🏠 Home</a>
     </div>
   </div>
-
+ 
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-inner">
-      <span class="hero-badge" data-i18n="hero.badge">🤖 AI-Powered Grievance System</span>
-      <h1 data-i18n="hero.title">AI-Based Citizen <span>Grievance Classification</span> System</h1>
-      <p>A unified, transparent, and accountable platform for all 29 States and 8 Union Territories of India. File, track, and resolve your grievances — powered by Artificial Intelligence.</p>
+      <span class="hero-badge" data-i18n="page.home.badge">🤖 AI-Powered Grievance System</span>
+      <h1 data-i18n="home.h1">AI-Based Citizen <span>Grievance Classification</span> System</h1>
+      <p data-i18n="page.home.desc">A unified, transparent, and accountable platform for all 29 States and 8 Union Territories of India. File, track, and resolve your grievances — powered by Artificial Intelligence.</p>
       <div class="hero-actions">
         <a href="#lodge" class="btn btn-primary btn-lg" data-i18n="btn.lodge">📝 Lodge Complaint</a>
         <a href="track.html" class="btn btn-outline-white btn-lg" data-i18n="btn.track">🔍 Track Complaint</a>
@@ -36,7 +36,7 @@
       <div class="hero-stats">
         <div class="hero-stat">
           <span class="stat-num" data-count="248563" data-suffix="+">0</span>
-          <span class="stat-label">Complaints Filed</span>
+          <span class="stat-label"></span><span class="stat-label" data-i18n="stat.filed">Complaints Filed</span>
         </div>
         <div class="hero-stat">
           <span class="stat-num" data-count="213490" data-suffix="+">0</span>
@@ -44,65 +44,65 @@
         </div>
         <div class="hero-stat">
           <span class="stat-num" data-count="37">0</span>
-          <span class="stat-label">States & UTs Covered</span>
+          <span class="stat-label"></span><span class="stat-label" data-i18n="stat.states">States &amp; UTs Covered</span>
         </div>
         <div class="hero-stat">
           <span class="stat-num" data-count="92" data-suffix="%">0</span>
-          <span class="stat-label">Resolution Rate</span>
+          <span class="stat-label"></span><span class="stat-label" data-i18n="stat.rate">Resolution Rate</span>
         </div>
       </div>
     </div>
   </section>
-
+ 
   <!-- Quick Actions -->
   <div class="page-content">
-
+ 
     <section style="margin-bottom:36px;">
       <div class="quick-actions">
         <a href="#lodge" class="quick-action-card">
           <div class="qa-icon">📝</div>
-          <h4>Lodge Complaint</h4>
-          <p>File a grievance directly — no login required</p>
+          <h4 data-i18n="qa.lodge.title">Lodge Complaint</h4>
+          <p data-i18n="qa.lodge.desc">File a grievance directly — no login required</p>
         </a>
         <a href="track.html" class="quick-action-card">
           <div class="qa-icon">🔍</div>
-          <h4>Track Complaint</h4>
-          <p>Check status using your Complaint ID</p>
+          <h4 data-i18n="qa.track.title">Track Complaint</h4>
+          <p data-i18n="qa.track.desc">Check status using your Complaint ID</p>
         </a>
         <a href="status.html" class="quick-action-card">
           <div class="qa-icon">📊</div>
-          <h4>View Status</h4>
-          <p>Detailed status report with timeline</p>
+          <h4 data-i18n="qa.status.title">View Status</h4>
+          <p data-i18n="qa.status.desc">Detailed status report with timeline</p>
         </a>
         <a href="departments.html" class="quick-action-card">
           <div class="qa-icon">🏛️</div>
-          <h4>Departments</h4>
-          <p>Browse all government departments</p>
+          <h4 data-i18n="qa.dept.title">Departments</h4>
+          <p data-i18n="qa.dept.desc">Browse all government departments</p>
         </a>
         <a href="dashboard.html" class="quick-action-card">
           <div class="qa-icon">📈</div>
-          <h4>Dashboard</h4>
-          <p>View complaint analytics and reports</p>
+          <h4 data-i18n="qa.dash.title">Dashboard</h4>
+          <p data-i18n="qa.dash.desc">View complaint analytics and reports</p>
         </a>
         <a href="login.html" class="quick-action-card">
           <div class="qa-icon">🔐</div>
-          <h4>Login</h4>
-          <p>Citizen, Officer, or Admin access</p>
+          <h4 data-i18n="qa.login.title">Login</h4>
+          <p data-i18n="qa.login.desc">Citizen, Officer, or Admin access</p>
         </a>
       </div>
     </section>
-
+ 
     <!-- Notice Board + Lodge Form -->
     <div class="grid-2" style="gap:28px;margin-bottom:40px;">
-
+ 
       <!-- Lodge Complaint Form -->
       <div id="lodge">
         <div class="complaint-form-section">
           <div class="form-section-header">
             <div class="form-section-icon">📝</div>
             <div>
-              <h2 data-i18n="form.lodge.title">Lodge Your Complaint</h2>
-              <p>No login required. Fill in the details below.</p>
+              <h2 data-i18n="form.lodge.h2">Lodge Your Complaint</h2>
+              <p data-i18n="form.lodge.sub">No login required. Fill in the details below.</p>
             </div>
           </div>
           <div class="complaint-form-body">
@@ -114,23 +114,23 @@
             <form id="complaintForm" novalidate>
               <div class="form-row">
                 <div class="form-group">
-                  <label for="fname" data-i18n="form.name">Full Name <span class="required">*</span></label>
+                  <label for="fname"><span data-i18n="form.name">Full Name</span> <span class="required">*</span></label>
                   <input type="text" id="fname" name="name" class="form-control" placeholder="Enter your full name" required>
                 </div>
                 <div class="form-group">
-                  <label for="fmobile" data-i18n="form.mobile">Mobile Number <span class="required">*</span></label>
+                  <label for="fmobile"><span data-i18n="form.mobile">Mobile Number</span> <span class="required">*</span></label>
                   <input type="tel" id="fmobile" name="mobile" class="form-control" placeholder="10-digit mobile number" maxlength="10" required>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
-                  <label for="femail" data-i18n="form.email">Email Address</label>
+                  <label for="femail"><span data-i18n="form.email">Email Address</span></label>
                   <input type="email" id="femail" name="email" class="form-control" placeholder="your@email.com">
                 </div>
                 <div class="form-group">
-                  <label for="fdept" data-i18n="form.dept">Department <span class="required">*</span></label>
+                  <label for="fdept"><span data-i18n="form.dept">Department</span> <span class="required">*</span></label>
                   <select id="fdept" name="department" class="form-control" required>
-                    <option value="">-- Select Department --</option>
+                    <option value="" data-i18n="form.dept.ph">-- Select Department --</option>
                     <option>Ministry of Health &amp; Family Welfare</option>
                     <option>Department of Education</option>
                     <option>Transport Authority</option>
@@ -143,7 +143,7 @@
               <div class="form-group">
                 <label for="fstate">State / UT <span class="required">*</span></label>
                 <select id="fstate" name="state" class="form-control" required>
-                  <option value="">-- Select State --</option>
+                  <option value="" data-i18n="form.state.ph">-- Select State --</option>
                   <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
                   <option>Bihar</option><option>Chhattisgarh</option><option>Delhi (NCT)</option>
                   <option>Goa</option><option>Gujarat</option><option>Haryana</option>
@@ -157,11 +157,11 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="fsubject" data-i18n="form.subject">Complaint Subject <span class="required">*</span></label>
+                <label for="fsubject"><span data-i18n="form.subject">Complaint Subject</span> <span class="required">*</span></label>
                 <input type="text" id="fsubject" name="subject" class="form-control" placeholder="Brief title of your complaint" required>
               </div>
               <div class="form-group">
-                <label for="fdesc" data-i18n="form.desc">Complaint Description <span class="required">*</span></label>
+                <label for="fdesc"><span data-i18n="form.desc">Complaint Description</span> <span class="required">*</span></label>
                 <textarea id="fdesc" name="description" class="form-control" rows="4" placeholder="Describe your grievance in detail. Include dates, locations, and any previous actions taken…" required></textarea>
                 <span class="form-hint">Minimum 50 characters. Be specific for faster resolution.</span>
               </div>
@@ -175,12 +175,12 @@
           </div>
         </div>
       </div>
-
+ 
       <!-- Notice Board + Track Box -->
       <div style="display:flex;flex-direction:column;gap:22px;">
         <!-- Track Box -->
         <div class="track-box">
-          <h3 data-i18n="track.box.title">🔍 Track Your Complaint</h3>
+          <h3 data-i18n="track.box.h3">🔍 Track Your Complaint</h3>
           <p>Enter your Complaint ID to check the current status and updates. No login required.</p>
           <form class="track-form" style="margin:0;">
             <div class="track-input-row">
@@ -190,12 +190,12 @@
           </form>
           <div id="trackResult"></div>
         </div>
-
+ 
         <!-- Notice Board -->
         <div class="notice-board">
           <div class="notice-board-header">
             <h4 data-i18n="notice.title">📌 Notice Board</h4>
-            <a href="#" class="btn btn-sm" style="color:rgba(255,255,255,0.8);font-size:0.75rem;">View All</a>
+            <a href="#" class="btn btn-sm" style="color:rgba(255,255,255,0.8);font-size:0.75rem;" data-i18n="notice.viewall">View All</a>
           </div>
           <div class="notice-list">
             <div class="notice-item">
@@ -220,7 +220,7 @@
             </div>
           </div>
         </div>
-
+ 
         <!-- Quick Status -->
         <div class="info-panel">
           <h4>📋 Important Links</h4>
@@ -234,96 +234,96 @@
           </ul>
         </div>
       </div>
-
+ 
     </div>
-
+ 
     <!-- Features Section -->
     <section style="margin-bottom:40px;">
       <div class="section-header">
-        <span class="section-tag">Features</span>
-        <h2>Why Choose GrievAI?</h2>
+        <span class="section-tag" data-i18n="feat.tag">Features</span>
+        <h2 data-i18n="feat.title">Why Choose GrievAI?</h2>
         <p>An intelligent, transparent, and citizen-first grievance redressal system built for modern India.</p>
       </div>
       <div class="grid-3" style="gap:22px;">
         <div class="feature-card">
           <div class="feature-icon">🤖</div>
-          <h3>AI-Based Classification</h3>
+          <h3 data-i18n="feat.1.title">AI-Based Classification</h3>
           <p>Our AI engine automatically classifies and routes your complaint to the right department within seconds, ensuring faster response times.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔍</div>
-          <h3>Real-Time Tracking</h3>
+          <h3 data-i18n="feat.2.title">Real-Time Tracking</h3>
           <p>Track the status of your complaint in real time using a unique Complaint ID — no account or login needed.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔔</div>
-          <h3>Instant Notifications</h3>
+          <h3 data-i18n="feat.3.title">Instant Notifications</h3>
           <p>Receive SMS and email updates at every stage of your complaint — from registration to resolution.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">⬆️</div>
-          <h3>Auto Escalation</h3>
+          <h3 data-i18n="feat.4.title">Auto Escalation</h3>
           <p>Unresolved complaints are automatically escalated to senior officials after the stipulated deadline, ensuring accountability.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔒</div>
-          <h3>Secure &amp; Confidential</h3>
+          <h3 data-i18n="feat.5.title">Secure &amp; Confidential</h3>
           <p>Your data is protected with SSL encryption, stored on Government of India secure servers, compliant with IT Act 2000.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">📱</div>
-          <h3>Mobile Friendly</h3>
+          <h3 data-i18n="feat.6.title">Mobile Friendly</h3>
           <p>Fully responsive portal accessible on any device — desktop, tablet, or mobile. Available as an app on Play Store &amp; App Store.</p>
         </div>
       </div>
     </section>
-
+ 
     <!-- How It Works -->
     <section style="margin-bottom:40px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px 28px;">
       <div class="section-header">
-        <span class="section-tag">Process</span>
-        <h2>How It Works</h2>
+        <span class="section-tag" data-i18n="how.tag">Process</span>
+        <h2 data-i18n="how.title">How It Works</h2>
         <p>Simple, transparent, and efficient — file and resolve your grievance in 4 easy steps.</p>
       </div>
       <div class="process-steps">
         <div class="process-step">
           <div class="step-number">1</div>
-          <h4>File Complaint</h4>
+          <h4 data-i18n="how.s1.title">File Complaint</h4>
           <p>Fill the online form with your grievance details. No account required.</p>
         </div>
         <div class="process-step">
           <div class="step-number">2</div>
-          <h4>AI Classification</h4>
+          <h4 data-i18n="how.s2.title">AI Classification</h4>
           <p>AI engine classifies and routes your complaint to the right department.</p>
         </div>
         <div class="process-step">
           <div class="step-number">3</div>
-          <h4>Officer Reviews</h4>
+          <h4 data-i18n="how.s3.title">Officer Reviews</h4>
           <p>A dedicated officer reviews and takes action on your grievance.</p>
         </div>
         <div class="process-step">
           <div class="step-number">4</div>
-          <h4>Resolution</h4>
+          <h4 data-i18n="how.s4.title">Resolution</h4>
           <p>You receive notification upon resolution and can provide feedback.</p>
         </div>
       </div>
     </section>
-
+ 
     <!-- Departments Table -->
     <section style="margin-bottom:40px;">
       <div class="section-header">
-        <span class="section-tag">Departments</span>
-        <h2>Grievance Categories by Department</h2>
+        <span class="section-tag" data-i18n="dept.tag">Departments</span>
+        <h2 data-i18n="dept.table.title">Grievance Categories by Department</h2>
         <p>Select the relevant department when filing your complaint for faster routing.</p>
       </div>
       <div class="card" style="overflow:hidden;">
         <table class="data-table">
           <thead>
             <tr>
-              <th>Department</th>
-              <th>Common Grievance Types</th>
-              <th>Response Time</th>
-              <th>Action</th>
+              <th data-i18n="dept.th.name">Department</th>
+              <th data-i18n="dept.th.types">Common Grievance Types</th>
+              <th data-i18n="dept.th.time">Response Time</th>
+              <th data-i18n="dept.th.action">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -361,15 +361,15 @@
         </table>
       </div>
       <div style="text-align:center;margin-top:18px;">
-        <a href="departments.html" class="btn btn-navy">View All Departments →</a>
+        <a href="departments.html" class="btn btn-navy" data-i18n="dept.view.all">View All Departments →</a>
       </div>
     </section>
-
+ 
   </div><!-- end .page-content -->
-
+ 
   <!-- Footer Placeholder -->
   <div id="site-footer-placeholder"></div>
-
+ 
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>
