@@ -2559,3 +2559,76 @@ body.lang-rtl .chatbot-close { margin-left: 0; margin-right: auto; }
 :lang(ur), :lang(ks), :lang(sd) {
   font-family: 'Noto Nastaliq Urdu', 'Noto Sans Arabic', Arial, sans-serif;
 }
+/* =====================================================
+   TEXT VISIBILITY FIX — Dark section white text
+   ===================================================== */
+
+.hero-section { color: #ffffff; }
+.hero-section h1 { color: #ffffff !important; }
+.hero-section h1 span { color: #FF6600 !important; }
+.hero-section p { color: rgba(255,255,255,0.85) !important; }
+.hero-section .hero-badge { color: #ffffff !important; }
+.hero-stat .stat-num { color: #FF6600 !important; }
+.hero-stat .stat-label { color: rgba(255,255,255,0.78) !important; }
+
+.page-hero { color: #ffffff; }
+.page-hero h1 { color: #ffffff !important; }
+.page-hero p { color: rgba(255,255,255,0.82) !important; }
+
+.about-hero-strip { color: #ffffff; }
+.about-hero-strip h1 { color: #ffffff !important; }
+.about-hero-strip p { color: rgba(255,255,255,0.82) !important; }
+.about-hero-strip .abadge { color: #ffffff !important; }
+
+.about-mission { color: #ffffff; }
+.about-mission h3 { color: #FF6600 !important; }
+.about-mission p { color: rgba(255,255,255,0.88) !important; }
+
+.main-nav { color: #ffffff; }
+.nav-menu li a { color: rgba(255,255,255,0.90) !important; }
+.nav-menu li a:hover,
+.nav-menu li a.active { color: #ffffff !important; }
+
+.dash-sidebar { color: #ffffff; }
+.dash-sidebar .user-info h4 { color: #ffffff !important; }
+.dash-nav li a { color: rgba(255,255,255,0.80) !important; }
+.dash-nav li a:hover,
+.dash-nav li a.active { color: #ffffff !important; }
+
+.site-footer { color: rgba(255,255,255,0.82); }
+.footer-brand h3 { color: #ffffff !important; }
+.footer-brand p { color: rgba(255,255,255,0.65) !important; }
+.footer-col h4 { color: #FF6600 !important; }
+.footer-col ul li a { color: rgba(255,255,255,0.72) !important; }
+.footer-col ul li a:hover { color: #FF6600 !important; }
+.footer-bottom-inner { color: rgba(255,255,255,0.55) !important; }
+.footer-bottom-inner a { color: rgba(255,255,255,0.65) !important; }
+
+.gov-top-bar { color: rgba(255,255,255,0.85); }
+.gov-top-bar .top-links a { color: rgba(255,255,255,0.78) !important; }
+.accessibility-links button { color: #ffffff !important; }
+
+.login-header { color: #ffffff; }
+.login-header h2 { color: #ffffff !important; }
+.login-header p { color: rgba(255,255,255,0.75) !important; }
+
+.form-section-header { color: #ffffff; }
+.form-section-header h2 { color: #ffffff !important; }
+.form-section-header p { color: rgba(255,255,255,0.78) !important; }
+
+.notice-board-header h4 { color: #ffffff !important; }
+.data-table th { color: #ffffff !important; }
+.ticker-label { color: #ffffff !important; }
+.swachh-badge { color: #ffffff !important; }
+.captcha-refresh { color: #ffffff !important; }
+
+.chatbot-head { color: #ffffff; }
+.bot-info h4 { color: #ffffff !important; }
+.bot-info span { color: rgba(255,255,255,0.68) !important; }
+.nav-hamburger span { background: #ffffff !important; }
+
+@media (max-width: 768px) {
+  .nav-menu.open { background: #00224d !important; }
+  .nav-menu.open li a { color: rgba(255,255,255,0.92) !important; }
+  .nav-menu.open li a:hover { color: #ffffff !important; }
+}
