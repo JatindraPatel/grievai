@@ -272,15 +272,33 @@ window.GrievLang = (function () {
   }
  
   // ── Init ─────────────────────────────────────────
-function init() {
+function injectLangBar() {
     var nav = document.querySelector('.main-nav');
-    if (nav) nav.insertAdjacentElement('afterend', buildLangBar());
+    if (nav && !document.getElementById('langBar')) {
+      nav.insertAdjacentElement('afterend', buildLangBar());
+      return true;
+    }
+    return false;
+  }
+
+function init() {
     var langObj = LANGUAGES.find(function(l){ return l.code === currentLang; }) || LANGUAGES[0];
     document.documentElement.lang = currentLang;
     document.body.dir = langObj.dir || 'ltr';
     document.body.classList.toggle('lang-rtl', langObj.dir === 'rtl');
-    setTimeout(applyAll, 100);
-    setTimeout(highlightActiveBtn, 120);
+
+    if (!injectLangBar()) {
+      var attempts = 0;
+      var retry = setInterval(function() {
+        attempts++;
+        if (injectLangBar() || attempts > 20) {
+          clearInterval(retry);
+          highlightActiveBtn();
+        }
+      }, 80);
+    }
+    setTimeout(applyAll, 150);
+    setTimeout(highlightActiveBtn, 200);
   }
  
   return { t: t, setLang: setLang, getLang: getLang, init: init, applyAll: applyAll, LANGUAGES: LANGUAGES };
