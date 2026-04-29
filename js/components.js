@@ -5,15 +5,15 @@
 (function () {
 
   var NAV_LINKS = [
-    { href:'index.html',       key:'nav.home'        },
-    { href:'about.html',       key:'nav.about'       },
-    { href:'departments.html', key:'nav.departments'  },
-    { href:'faq.html',         key:'nav.faq'         },
-    { href:'help.html',        key:'nav.help'        },
-    { href:'contact.html',     key:'nav.contact'     },
-    { href:'sitemap.html',     key:'nav.sitemap'     },
-    { href:'security.html',    key:'nav.security'    },
-    { href:'login.html',       key:'nav.login'       }
+    { href:'index.html',       key:'nav.home',        label:'Home'        },
+    { href:'about.html',       key:'nav.about',       label:'About'       },
+    { href:'departments.html', key:'nav.departments', label:'Departments' },
+    { href:'faq.html',         key:'nav.faq',         label:'FAQ'         },
+    { href:'help.html',        key:'nav.help',        label:'Help'        },
+    { href:'contact.html',     key:'nav.contact',     label:'Contact'     },
+    { href:'sitemap.html',     key:'nav.sitemap',     label:'Sitemap'     },
+    { href:'security.html',    key:'nav.security',    label:'Security'    },
+    { href:'login.html',       key:'nav.login',       label:'Login'       }
   ];
 
   function buildHeader() {
