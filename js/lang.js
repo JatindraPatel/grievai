@@ -272,7 +272,7 @@ window.GrievLang = (function () {
   }
  
   // ── Init ─────────────────────────────────────────
-  function init() {
+function init() {
     var nav = document.querySelector('.main-nav');
     if (nav) nav.insertAdjacentElement('afterend', buildLangBar());
     var langObj = LANGUAGES.find(function(l){ return l.code === currentLang; }) || LANGUAGES[0];
