@@ -20,7 +20,7 @@
     var current = window.location.pathname.split('/').pop() || 'index.html';
     var navItems = NAV_LINKS.map(function(l) {
       return '<li><a href="' + l.href + '" data-i18n="' + l.key + '"' +
-             (l.href === current ? ' class="active"' : '') + '></a></li>';
+             (l.href === current ? ' class="active"' : '') + '>' + l.label + '</a></li>';
     }).join('');
 
     return '\
