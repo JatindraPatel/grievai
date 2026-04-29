@@ -1,0 +1,16 @@
+"""
+SQLAlchemy declarative base + DB initialisation
+"""
+from sqlalchemy.orm import DeclarativeBase
+from app.db.session import engine
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+async def init_db():
+    """Create all tables on startup (dev mode). Use Alembic for production."""
+    from app.db import models  # noqa: F401 — ensures models are registered
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
