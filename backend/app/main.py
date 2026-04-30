@@ -1,66 +1,46 @@
-"""
-GrievAI – FastAPI Backend Entry Point
-AI-Powered Citizen Grievance Redressal System
-Government of India (Demo)
-"""
-
-import logging
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
-from app.api.v1 import complaints, auth, stats, health
-from app.core.config import settings
-from app.db.base import init_db
-from app.utils.logger import setup_logger
+# TODO: Import routers once they are created
+# from app.routers import auth, complaints, admin, alerts
 
-# ── Logging ──────────────────────────────────────────────
-setup_logger()
-logger = logging.getLogger(__name__)
-
-
-# ── Lifespan (startup / shutdown) ────────────────────────
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    logger.info("🚀 GrievAI backend starting up…")
-    await init_db()
-    logger.info("✅ Database initialised")
-    yield
-    logger.info("🛑 GrievAI backend shutting down")
-
-
-# ── App Instance ─────────────────────────────────────────
 app = FastAPI(
-    title="GrievAI API",
-    description="AI-Powered Citizen Grievance Redressal System — Government of India",
-    version="1.0.0",
-    docs_url="/api/docs",
-    redoc_url="/api/redoc",
-    lifespan=lifespan,
+    title="GrievAI Backend API",
+    description="Backend API for the GrievAI Citizen Portal featuring AI Classification.",
+    version="1.0.0"
 )
 
-# ── CORS (allow all origins for frontend integration) ─────
+# Configure CORS for the Vercel frontend
+# Update this with your actual Vercel domain once deployed
+origins = [
+    "http://localhost:3000",
+    "http://localhost:5173", # Vite default
+    "http://localhost:8080",
+    "https://grievai.vercel.app/", # Your live frontend
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # tighten in production
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allows all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allows all headers
 )
 
-# ── Routers ───────────────────────────────────────────────
-app.include_router(health.router,     prefix="/api/v1",           tags=["Health"])
-app.include_router(auth.router,       prefix="/api/v1/auth",      tags=["Auth"])
-app.include_router(complaints.router, prefix="/api/v1/complaints", tags=["Complaints"])
-app.include_router(stats.router,      prefix="/api/v1/stats",     tags=["Analytics"])
+# --- Router Registration ---
+# Uncomment these once you create the files in app/routers/
+# app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
+# app.include_router(complaints.router, prefix="/api/complaints", tags=["Complaints"])
+# app.include_router(admin.router, prefix="/api/admin", tags=["Admin Dashboard"])
+# app.include_router(alerts.router, prefix="/api/alerts", tags=["Alerts & Escalations"])
 
-
-@app.get("/", tags=["Root"])
+@app.get("/", tags=["Health Check"])
 async def root():
+    """
+    Root endpoint to verify the API is running.
+    """
     return {
-        "message": "GrievAI API is running",
-        "docs": "/api/docs",
-        "version": "1.0.0",
+        "message": "Welcome to the GrievAI API",
+        "status": "online",
+        "documentation": "/docs"
     }
