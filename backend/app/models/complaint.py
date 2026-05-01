@@ -1,11 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Enum
 from sqlalchemy.sql import func
-from sqlalchemy.orm import declarative_base
+from app.core.database import Base
 import enum
-
-# Note: In a real project, Base is usually imported from a central database.py file
-# e.g., from app.database import Base
-Base = declarative_base()
 
 class ComplaintStatus(str, enum.Enum):
     PENDING = "pending"
