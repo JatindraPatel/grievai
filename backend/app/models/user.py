@@ -1,10 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.sql import func
-from sqlalchemy.orm import declarative_base
-
-# Note: In a real project, Base is usually imported from a central database.py file
-# e.g., from app.database import Base
-Base = declarative_base()
+from app.core.database import Base
 
 class User(Base):
     __tablename__ = "users"
