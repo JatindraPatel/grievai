@@ -11,12 +11,14 @@
 window.GrievCamera = (function () {
 
   // ── State ─────────────────────────────────────
-  var _stream        = null;   // MediaStream
-  var _capturedBlob  = null;   // Final watermarked image blob
-  var _latitude      = null;
-  var _longitude     = null;
-  var _locationError = null;
-  var _geoWatcher    = null;
+  var _stream          = null;   // MediaStream
+  var _capturedBlob    = null;   // Final watermarked image blob
+  var _latitude        = null;
+  var _longitude       = null;
+  var _locationError   = null;
+  var _geoWatcher      = null;
+  var _captureTimestamp = null;
+  var _reverseAddress  = null;
 
   // ── Config ────────────────────────────────────
   var CONFIG = {
@@ -95,13 +97,16 @@ window.GrievCamera = (function () {
 
         var accuracy = Math.round(pos.coords.accuracy);
         _setStatus(statusEl, 'success',
-          '✅ Location acquired (±' + accuracy + 'm accuracy)');
+          '✅ GPS locked (±' + accuracy + 'm accuracy) — Ready to capture!');
 
         if (coordsEl) {
           coordsEl.textContent =
-            'Lat: ' + _latitude + '  |  Lng: ' + _longitude;
+            'Lat: ' + _latitude + '  |  Lng: ' + _longitude + '  |  Fetching address…';
           coordsEl.style.display = 'block';
         }
+
+        // Fetch human-readable address in background
+        fetchReverseGeocode(_latitude, _longitude);
       },
       function (err) {
         _locationError = 'Location unavailable';
@@ -120,6 +125,25 @@ window.GrievCamera = (function () {
     );
   }
 
+  // ── Reverse Geocoding (Nominatim – free, no key) ──
+  function fetchReverseGeocode(lat, lng) {
+    var url = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lng + '&zoom=16&addressdetails=1';
+    fetch(url, { headers: { 'Accept-Language': 'en' } })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (data && data.display_name) {
+          _reverseAddress = data.display_name;
+          var coordsEl = document.getElementById('cameraCoords');
+          if (coordsEl) {
+            coordsEl.innerHTML =
+              'Lat: ' + _latitude + '  |  Lng: ' + _longitude +
+              '<br><small style="color:var(--success);font-size:0.72rem;">📌 ' + _reverseAddress.substring(0,80) + '</small>';
+          }
+        }
+      })
+      .catch(function(){});
+  }
+
   // ── Capture Frame from Video ───────────────────
   function capturePhoto(videoElId, previewElId, statusElId, callback) {
     var videoEl   = document.getElementById(videoElId);
@@ -132,15 +156,44 @@ window.GrievCamera = (function () {
       return;
     }
 
-    if (!_latitude || !_longitude) {
-      _setStatus(statusEl, 'error', '❌ Location not available. Please enable GPS and try again.');
-      if (callback) callback(null);
-      return;
+    // Auto-fetch fresh GPS at exact moment of capture
+    if (navigator.geolocation) {
+      _setStatus(statusEl, 'loading', '📍 Locking GPS location at capture moment…');
+      navigator.geolocation.getCurrentPosition(
+        function(pos) {
+          _latitude  = pos.coords.latitude.toFixed(6);
+          _longitude = pos.coords.longitude.toFixed(6);
+          _captureTimestamp = new Date().toISOString();
+          _doCapture(videoEl, previewEl, statusEl, callback);
+        },
+        function() {
+          // Use cached location if fresh fetch fails
+          if (_latitude && _longitude) {
+            _doCapture(videoEl, previewEl, statusEl, callback);
+          } else {
+            _setStatus(statusEl, 'error', '❌ GPS unavailable. Enable location and retry.');
+            if (callback) callback(null);
+          }
+        },
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+      );
+    } else {
+      if (!_latitude || !_longitude) {
+        _setStatus(statusEl, 'error', '❌ Location not available. Please enable GPS and try again.');
+        if (callback) callback(null);
+        return;
+      }
+      _doCapture(videoEl, previewEl, statusEl, callback);
     }
+  }
+
+  // ── Internal capture after location acquired ───
+  function _doCapture(videoEl, previewEl, statusEl, callback) {
 
     var canvas = document.createElement('canvas');
     canvas.width  = videoEl.videoWidth  || 1280;
     canvas.height = videoEl.videoHeight || 720;
+    _captureTimestamp = _captureTimestamp || new Date().toISOString();
 
     var ctx = canvas.getContext('2d');
 
@@ -165,6 +218,7 @@ window.GrievCamera = (function () {
     }, 'image/jpeg', 0.92);
   }
 
+
   // ── Apply Geo Watermark on Canvas ─────────────
   function _applyWatermark(ctx, width, height) {
     var now = new Date();
@@ -176,10 +230,13 @@ window.GrievCamera = (function () {
     });
 
     var lines = [
-      '📍 GrievAI — Geo-Verified Complaint',
+      '📍 GrievAI — Geo-Verified Complaint Photo',
       'Lat: ' + _latitude + '  |  Lng: ' + _longitude,
-      'Date: ' + dateStr + '  |  Time: ' + timeStr
+      'Captured: ' + dateStr + ' at ' + timeStr
     ];
+    if (_reverseAddress) {
+      lines.push('📌 ' + _reverseAddress.substring(0, 60) + ((_reverseAddress.length > 60) ? '…' : ''));
+    }
 
     var cfg      = CONFIG.watermark;
     var fontSize = cfg.fontSize;
@@ -271,10 +328,12 @@ window.GrievCamera = (function () {
   // ── Reset module state ─────────────────────────
   function reset() {
     stopCamera();
-    _capturedBlob  = null;
-    _latitude      = null;
-    _longitude     = null;
-    _locationError = null;
+    _capturedBlob     = null;
+    _latitude         = null;
+    _longitude        = null;
+    _locationError    = null;
+    _captureTimestamp = null;
+    _reverseAddress   = null;
   }
 
   // ── Public API ─────────────────────────────────

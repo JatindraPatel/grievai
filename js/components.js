@@ -12,9 +12,9 @@
     { href:'help.html',        key:'nav.help',        label:'Help'        },
     { href:'contact.html',     key:'nav.contact',     label:'Contact'     },
     { href:'sitemap.html',     key:'nav.sitemap',     label:'Sitemap'     },
-    { href:'security.html',    key:'nav.security',    label:'Security'    },
-    { href:'login.html',       key:'nav.login',       label:'Login'       }
+    { href:'security.html',    key:'nav.security',    label:'Security'    }
   ];
+  // Note: Login is in top CPGRAMS bar, not nav menu
 
   // All 22 Indian languages exactly like CPGRAMS
   var CPGRAMS_LANGUAGES = [
@@ -53,7 +53,7 @@
     return found ? found.label : 'English';
   }
 
-  // ── Build CPGRAMS-style Language Bar ────────────
+  // ── Build CPGRAMS-style Language Bar (FIX 3 & 4) ──
   function buildLangSigninBar() {
     var currentLang = getSavedLang();
     var currentLabel = getLangLabel(currentLang);
@@ -63,27 +63,34 @@
              'data-code="' + l.code + '">' + l.label + '</li>';
     }).join('');
 
-    return '\
-    <div class="cpgrams-bar" id="cpgramsBar">\
-      <div class="cpgrams-bar-inner">\
-        <div class="cpgrams-lang-section">\
-          <span class="cpgrams-lang-label">Language :</span>\
-          <div class="cpgrams-dropdown" id="cpgramsDropdown">\
-            <button class="cpgrams-dropdown-btn" id="cpgramsDropBtn" aria-haspopup="listbox" aria-expanded="false">\
-              <span class="cpgrams-selected-text" id="cpgramsSelectedText">' + currentLabel + '</span>\
-              <span class="cpgrams-arrow">▾</span>\
-            </button>\
-            <ul class="cpgrams-dropdown-list" id="cpgramsDropList" role="listbox">\
-              ' + langItems + '\
-            </ul>\
-          </div>\
-        </div>\
-        <a class="cpgrams-signin-btn" href="login.html" id="cpgramsSignIn">\
-          <span class="cpgrams-signin-icon">➜</span>\
-          <span class="cpgrams-signin-text">Sign In</span>\
-        </a>\
-      </div>\
-    </div>';
+    return (
+      '<div class="cpgrams-bar" id="cpgramsBar">' +
+        '<div class="cpgrams-bar-inner">' +
+          // LEFT: Language
+          '<div class="cpgrams-lang-section">' +
+            '<span class="cpgrams-lang-label">🌐 Language :</span>' +
+            '<div class="cpgrams-dropdown" id="cpgramsDropdown">' +
+              '<button class="cpgrams-dropdown-btn" id="cpgramsDropBtn" aria-haspopup="listbox" aria-expanded="false">' +
+                '<span class="cpgrams-selected-text" id="cpgramsSelectedText">' + currentLabel + '</span>' +
+                '<span class="cpgrams-arrow">▾</span>' +
+              '</button>' +
+              '<ul class="cpgrams-dropdown-list" id="cpgramsDropList" role="listbox">' +
+                langItems +
+              '</ul>' +
+            '</div>' +
+          '</div>' +
+          // RIGHT: Login / Sign In button
+          '<div class="cpgrams-right-section">' +
+            '<a class="cpgrams-signin-btn" href="login.html" id="cpgramsSignIn">' +
+              '<span class="cpgrams-signin-icon">➜</span>' +
+              '<span class="cpgrams-signin-text">Login / Sign In</span>' +
+            '</a>' +
+          '</div>' +
+        '</div>' +
+        // Google Translate hidden element
+        '<div id="google_translate_element" style="display:none;"></div>' +
+      '</div>'
+    );
   }
 
   // ── Build full header ───────────────────────────
@@ -235,10 +242,14 @@
       drop.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');
 
-      // Save & apply language
+      // Save & apply language (i18n labels + Google Translate full page)
       localStorage.setItem('grievai_lang', code);
       if (window.GrievLang) {
         window.GrievLang.setLang(code);
+      }
+      // Full-page Google Translate
+      if (window.GrievTranslate) {
+        window.GrievTranslate.setLanguage(code);
       }
     });
 
@@ -327,6 +338,10 @@
 
     if (window.GrievLang) {
       window.GrievLang.init();
+    }
+    // Init Google Translate full-page system
+    if (window.GrievTranslate) {
+      window.GrievTranslate.init();
     }
   });
 

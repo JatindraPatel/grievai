@@ -17,6 +17,32 @@ document.addEventListener('DOMContentLoaded', function () {
   // ── Hamburger Menu handled in components.js ──────
   // (Removed from here to prevent double-binding)
 
+  // ── AI Auto Department Detection ──────────────────
+  var descField = document.getElementById('fdesc');
+  var subjectField = document.getElementById('fsubject');
+
+  function runAIDeptDetection() {
+    if (!window.GrievAI_Dept) return;
+    var text = (subjectField ? subjectField.value : '') + ' ' + (descField ? descField.value : '');
+    text = text.trim();
+    if (text.length < 5) {
+      window.GrievAI_Dept.clearDetectionUI();
+      return;
+    }
+    var result = window.GrievAI_Dept.classify(text);
+    window.GrievAI_Dept.updateDetectionUI(result);
+  }
+
+  if (descField) {
+    descField.addEventListener('input', runAIDeptDetection);
+    descField.addEventListener('blur', runAIDeptDetection);
+  }
+  if (subjectField) {
+    subjectField.addEventListener('input', runAIDeptDetection);
+    subjectField.addEventListener('blur', runAIDeptDetection);
+  }
+
+
   // ── FAQ Accordion ────────────────────────────────
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', function () {
@@ -253,6 +279,24 @@ function validateComplaintForm() {
       valid = false;
     }
   });
+
+  // AI Department: run detection if not done; block if still empty
+  if (window.GrievAI_Dept) {
+    var subjectEl = document.getElementById('fsubject');
+    var descEl    = document.getElementById('fdesc');
+    var hiddenDept = document.getElementById('fDeptHidden');
+    var text = ((subjectEl ? subjectEl.value : '') + ' ' + (descEl ? descEl.value : '')).trim();
+    if (text.length >= 5) {
+      var result = window.GrievAI_Dept.classify(text);
+      window.GrievAI_Dept.updateDetectionUI(result);
+      if (hiddenDept) hiddenDept.value = result.dept;
+    }
+    if (hiddenDept && !hiddenDept.value.trim()) {
+      showNotification('Please describe your complaint so AI can detect the department.', 'error');
+      valid = false;
+    }
+  }
+
   if (!valid) {
     showNotification('Please fill in all required fields.', 'error');
   }

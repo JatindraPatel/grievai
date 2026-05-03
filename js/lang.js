@@ -140,7 +140,7 @@ window.GrievLang = (function () {
     'how.s3.title':    {en:'Officer Reviews',hi:'अधিকारी समीक्षा',bn:'অফিসার পর্যালোচনা',te:'అధికారి సమీক్ষ',mr:'অধিকারী समीक্ষা',ta:'அதிகாரி மதிப்பாய்வு',ur:'افسر جائزہ',gu:'অধিকারী સমীক्षা',kn:'ಅಧিকারি ಪರীক್ಷೆ',ml:'অধিকারী সমীক্ষ',or:'অধিকারী সমীক্ষা',pa:'ਅਧਿਕਾਰੀ ਸਮੀਖਿਆ',as:'বিষয়া পর্যালোচনা',mai:'অধিকারী সমীক্ষা',sat:'ᱚᱰᱷᱤᱠᱟᱨᱤ',ks:'افسر جائزہ',ne:'অধিকারী সমীক্ষা',sd:'آفيسر جائزو',kok:'অধিকারী সমীক্ষা',doi:'অধিকারী সমীক্ষা',mni:'ꯑꯧꯐꯤꯁꯔ ꯔꯤꯚꯤꯌꯨ',bo:'অধিকারী সমীক্ষা',sa:'অধিকারী সমীক্ষা'},
     'how.s3.desc':     {en:'A dedicated officer reviews and takes action on your grievance.',hi:'एक समर्পিত অধিকারী আপনার শিকায়তের সমীক্ষা करता হে এবং कार्রবাই করে।',bn:'একজন নিবেদিত অফিসার অভিযোগ পর্যালোচনা করে পদক্ষেপ নেন।',te:'సమర్పిత అధికారి ఫిర్యాదు సమీక్షించి చర్య తీసుకుంటారు.',mr:'সমর্পিত অধিকারী তক্রার সমীক্ষা করতে কার্রবাই করতে.',ta:'ஒரு அர்ப்பணிப்புள்ள அதிகாரி புகாரை ஆய்வு செய்கிறார்.',ur:'ایک مخصوص افسر شکایت کا جائزہ لے کر کارروائی کرتا ہے۔',gu:'সমর্পিত অধিকারী ফরিয়াদ সমীক্ষে কার্রবাই করে.',kn:'ಸಮর্পিত অধিকারী ದূরু ಸমীক্ষা करি।',ml:'সমর্পিত অধিকারী পরাতি সমীক্ষিচ্চু.',or:'সমর্পিত অধিকারী অভিযোগ সমীক্ষা করে.',pa:'ਸਮਰਪਿਤ ਅਧਿਕਾਰੀ ਸ਼ਿਕਾਇਤ ਦੀ ਸਮੀਖਿਆ ਕਰਦੇ ਹਨ।',as:'সমর্পিত বিষয়া অভিযোগৰ সমীক্ষা করে।',mai:'সমর্পিত অধিকারী সমীক্ষা করে।',sat:'অধিকারী সমীক্ষা।',ks:'افسر جائزہ لیتا ہے۔',ne:'সমর্পিত অধিকারী সমীক্ষা গর্ছ।',sd:'آفيسر جائزو وٺي ٿو.',kok:'সমर্পিত অধিকারী সমীক্ষা করতে.',doi:'সমর্পিত অধিকারী সমীক্ষা করদা।',mni:'সমর্পিত অফিসার রিভিউ।',bo:'সমর্পিত অধিকারী সমীক্ষা।',sa:'সমর্পিত অধিকারী সমীক্ষতে।'},
     'how.s4.title':    {en:'Resolution',hi:'समाধान',bn:'সমাধান',te:'పరిష్కారం',mr:'সমাধান',ta:'தீர்வு',ur:'حل',gu:'সমাধান',kn:'ಪರিಹಾರ',ml:'সমাধানম্',or:'সমাধান',pa:'ਹੱਲ',as:'সমাধান',mai:'সমাধান',sat:'ᱪᱟᱞᱟᱹ',ks:'حل',ne:'সমাধান',sd:'حل',kok:'সমাধান',doi:'সমাধান',mni:'ꯁꯩꯡꯕ ꯂꯩꯔꯣꯏ',bo:'সমাধান',sa:'সমাধানম্'},
-    'how.s4.desc':     {en:'You receive notification upon resolution and can provide feedback.',hi:'समাधान पर আপনাকে নोটিফিকেশন মিলে এবং আপনি ফিডব্যাক দিতে পারেন।',bn:'সমাধানে আপনি বিজ্ঞপ্তি পান এবং প্রতিক্রিয়া জানাতে পারেন।',te:'పరిష్కారంపై నోటిఫికేషన్ అందుతుంది.',mr:'সমाधানবর আपणास নোটিফিकেশন মিলে.',ta:'தீர்வில் அறிவிப்பு கிடைக்கும்.',ur:'حل پر اطلاع ملتی ہے اور فیڈ بیک دے سکتے ہیں۔',gu:'সমাধান পর নোটिফিकेশन মিলে.',kn:'সমাধান পর নোটিফিকেশন মিলুতে.',ml:'সমাধানত্তিল নোটিফিকেশন মিলুম.',or:'সমাধান পর নোটিফিকেশন মিলে.',pa:'ਹੱਲ ਹੋਣ 'ਤੇ ਸੂਚਨਾ ਮਿਲਦੀ ਹੈ।',as:'সমাধানত নোটিফিকেশন মিলে।',mai:'সমাধান পর নোটিফিকেশন মিলে।',sat:'সমাধান নোটিফিকেশন।',ks:'حل پر اطلاع۔',ne:'সমাধান পর নোটিফিকেশন।',sd:'حل تي نوٽيفيڪيشن.',kok:'সমাধানবর নোটিফিকেশন.',doi:'সমাধান পর নোটিফিকেশন।',mni:'ꯁꯩꯡꯕ ꯂꯩꯔꯣꯏꯗ নোটিফিকেশন।',bo:'সমাধান নোটিফিকেশন।',sa:'সমাধানে জ্ঞপ্তিং লভতে।'},
+    'how.s4.desc':     {en:'You receive notification upon resolution and can provide feedback.',hi:'समাधान पर আপনাকে নोটিফিকেশন মিলে এবং আপনি ফিডব্যাক দিতে পারেন।',bn:'সমাধানে আপনি বিজ্ঞপ্তি পান এবং প্রতিক্রিয়া জানাতে পারেন।',te:'పరిష్కారంపై నోటిఫికేషన్ అందుతుంది.',mr:'সমाधানবর আपणास নোটিফিकেশন মিলে.',ta:'தீர்வில் அறிவிப்பு கிடைக்கும்.',ur:'حل پر اطلاع ملتی ہے اور فیڈ بیک دے سکتے ہیں۔',gu:'সমাধান পর নোটिফিकेশन মিলে.',kn:'সমাধান পর নোটিফিকেশন মিলুতে.',ml:'সমাধানত্তিল নোটিফিকেশন মিলুম.',or:'সমাধান পর নোটিফিকেশন মিলে.',pa:'ਹੱਲ ਹੋਣ ਤੇ ਸੂਚਨਾ ਮਿਲਦੀ ਹੈ।',as:'সমাধানত নোটিফিকেশন মিলে।',mai:'সমাধান পর নোটিফিকেশন মিলে।',sat:'সমাধান নোটিফিকেশন।',ks:'حل پر اطلاع۔',ne:'সমাধান পর নোটিফিকেশন।',sd:'حل تي نوٽيفيڪيشن.',kok:'সমাধানবর নোটিফিকেশন.',doi:'সমাধান পর নোটিফিকেশন।',mni:'ꯁꯩꯡꯕ ꯂꯩꯔꯣꯏꯗ নোটিফিকেশন।',bo:'সমাধান নোটিফিকেশন।',sa:'সমাধানে জ্ঞপ্তিং লভতে।'},
 
     // ═══════════════ DEPT TABLE (HOME) ═══════════════════════════
     'dept.tag':        {en:'Departments',hi:'विভাগ',bn:'বিভাগ',te:'విభాగాలు',mr:'বিভাগ',ta:'துறைகள்',ur:'محکمے',gu:'বিভাগ',kn:'ಇಲಾಖೆ',ml:'বকুপ্পুকল',or:'বিভাগ',pa:'ਵਿਭਾਗ',as:'বিভাগ',mai:'বিভাগ',sat:'ᱦᱩᱱᱟᱹᱨ',ks:'محکمے',ne:'বিভাগ',sd:'محکما',kok:'বিভাগ',doi:'বিভাগ',mni:'ꯋꯥꯔꯩ',bo:'বিভাগ',sa:'বিভাগাঃ'},
@@ -303,5 +303,131 @@ window.GrievLang = (function () {
   }
 
   return { t: t, setLang: setLang, getLang: getLang, init: init, applyAll: applyAll, LANGUAGES: LANGUAGES };
+
+})();
+
+// ====================================================
+// GrievAI – Google Translate Integration (FIX 4)
+// Full-page translation using Google Translate Widget
+// Persists language across pages via localStorage
+// ====================================================
+
+window.GrievTranslate = (function() {
+
+  // Google Translate language code mapping
+  var GT_CODE_MAP = {
+    'en':  'en',  'hi':  'hi',  'bn':  'bn',  'te':  'te',
+    'mr':  'mr',  'ta':  'ta',  'ur':  'ur',  'gu':  'gu',
+    'kn':  'kn',  'ml':  'ml',  'or':  'or',  'pa':  'pa',
+    'as':  'as',  'ne':  'ne',  'sd':  'sd',  'mai': 'mai',
+    'sat': 'sat', 'ks':  'ks',  'kok': 'gom', 'doi': 'doi',
+    'mni': 'mni', 'bo':  'bo',  'sa':  'sa'
+  };
+
+  var _initialized = false;
+  var _pendingLang  = null;
+
+  // ── Load Google Translate script ─────────────────
+  function loadScript() {
+    if (document.getElementById('gt-script')) return;
+    var script = document.createElement('script');
+    script.id  = 'gt-script';
+    script.src = '//translate.google.com/translate_a/element.js?cb=GrievTranslateInit';
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
+  // ── Called by Google after script loads ──────────
+  window.GrievTranslateInit = function() {
+    var el = document.getElementById('google_translate_element');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'google_translate_element';
+      el.style.display = 'none';
+      document.body.appendChild(el);
+    }
+
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: 'en',
+        autoDisplay: false,
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      },
+      'google_translate_element'
+    );
+
+    _initialized = true;
+
+    // Apply pending language if any
+    var saved = localStorage.getItem('grievai_lang');
+    if (saved && saved !== 'en') {
+      setTimeout(function() { applyTranslation(saved); }, 600);
+    }
+    if (_pendingLang) {
+      setTimeout(function() { applyTranslation(_pendingLang); _pendingLang = null; }, 700);
+    }
+  };
+
+  // ── Apply Google Translate for a language ────────
+  function applyTranslation(langCode) {
+    var gtCode = GT_CODE_MAP[langCode] || langCode;
+
+    if (gtCode === 'en') {
+      // Restore original: remove cookie
+      var cookies = document.cookie.split(';');
+      cookies.forEach(function(c) {
+        if (c.trim().startsWith('googtrans')) {
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
+        }
+      });
+      // Force reload without translate
+      var currentURL = window.location.href;
+      if (currentURL.indexOf('#googtrans') === -1) {
+        window.location.reload();
+      }
+      return;
+    }
+
+    // Set Google Translate cookie for full-page translation
+    var cookieVal = '/en/' + gtCode;
+    document.cookie = 'googtrans=' + cookieVal + '; path=/';
+    document.cookie = 'googtrans=' + cookieVal + '; path=/; domain=' + window.location.hostname;
+
+    // Try to trigger translate via the select element
+    var selectEl = document.querySelector('.goog-te-combo');
+    if (selectEl) {
+      selectEl.value = gtCode;
+      selectEl.dispatchEvent(new Event('change'));
+      return;
+    }
+
+    // Fallback: reload page (cookie will be picked up by Google Translate)
+    if (!_initialized) {
+      _pendingLang = langCode;
+    } else {
+      window.location.reload();
+    }
+  }
+
+  // ── Public API ────────────────────────────────────
+  function setLanguage(langCode) {
+    localStorage.setItem('grievai_lang', langCode);
+    applyTranslation(langCode);
+  }
+
+  function init() {
+    loadScript();
+    // Apply saved language on page load
+    var saved = localStorage.getItem('grievai_lang');
+    if (saved && saved !== 'en') {
+      applyTranslation(saved);
+    }
+  }
+
+  return {
+    init: init,
+    setLanguage: setLanguage
+  };
 
 })();
