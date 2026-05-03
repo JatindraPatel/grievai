@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | GrievAI – Government of India</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     /* Dashboard-specific overrides */
     .dash-nav-divider {
@@ -156,65 +157,92 @@
         </div>
       </div>
 
-      <!-- Charts Row -->
-      <div class="grid-2" style="gap:22px;margin-bottom:24px;">
+      <!-- ═══ CHARTS SECTION – 6 Analytics Charts ═══ -->
+      <div style="margin-bottom:28px;">
+        <div class="section-header" style="margin-bottom:16px;text-align:left;border-bottom:2px solid var(--light-gray);padding-bottom:10px;">
+          <h3 style="color:var(--navy);font-family:var(--font-serif);font-size:1.15rem;margin:0;">📊 Analytics &amp; Insights</h3>
+        </div>
 
-        <!-- Monthly Trend -->
-        <div class="card">
-          <div class="card-header">
-            <h3>📈 <span data-i18n="stat.filed">Complaints</span> Monthly Trend (2024)</h3>
+        <!-- Row 1: Line Chart + Bar Chart -->
+        <div class="grid-2" style="gap:22px;margin-bottom:22px;">
+
+          <!-- Chart 1: Line Chart – Monthly Complaints Trend -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📈 Monthly Complaints Trend (2025)</h3>
+            </div>
+            <div class="card-body" style="padding:16px;">
+              <canvas id="chartMonthlyLine" height="200"></canvas>
+            </div>
           </div>
-          <div class="card-body">
-            <div style="padding-top:22px;">
-              <div class="chart-bar-wrap">
-                <div class="chart-bar" style="height:55px;"><span class="bar-val">1.8K</span></div>
-                <div class="chart-bar" style="height:62px;"><span class="bar-val">2.1K</span></div>
-                <div class="chart-bar" style="height:48px;"><span class="bar-val">1.6K</span></div>
-                <div class="chart-bar" style="height:75px;"><span class="bar-val">2.5K</span></div>
-                <div class="chart-bar" style="height:88px;"><span class="bar-val">2.9K</span></div>
-                <div class="chart-bar" style="height:65px;"><span class="bar-val">2.2K</span></div>
-                <div class="chart-bar" style="height:82px;"><span class="bar-val">2.7K</span></div>
-                <div class="chart-bar" style="height:95px;"><span class="bar-val">3.1K</span></div>
-                <div class="chart-bar" style="height:71px;"><span class="bar-val">2.4K</span></div>
-                <div class="chart-bar" style="height:90px;"><span class="bar-val">3.0K</span></div>
-                <div class="chart-bar" style="height:100px;background:linear-gradient(to top,var(--saffron),var(--saffron-light));"><span class="bar-val" style="color:var(--saffron);">3.3K</span></div>
-                <div class="chart-bar" style="height:83px;"><span class="bar-val">2.8K</span></div>
-              </div>
-              <div class="chart-labels">
-                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
-                <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
-              </div>
+
+          <!-- Chart 2: Bar Chart – Department vs Complaints -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🏛️ Complaints by Department</h3>
+            </div>
+            <div class="card-body" style="padding:16px;">
+              <canvas id="chartDeptBar" height="200"></canvas>
             </div>
           </div>
         </div>
 
-        <!-- Department Distribution -->
-        <div class="card">
-          <div class="card-header">
-            <h3>🏛️ Complaints by Department</h3>
-          </div>
-          <div class="card-body">
-            <div class="donut-wrap">
-              <svg width="120" height="120" viewBox="0 0 42 42" style="flex-shrink:0;">
-                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#f0f4f8" stroke-width="6"/>
-                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#003366" stroke-width="6" stroke-dasharray="39 61" stroke-dashoffset="25"/>
-                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#FF6600" stroke-width="6" stroke-dasharray="29 71" stroke-dashoffset="-14"/>
-                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#1a7a3f" stroke-width="6" stroke-dasharray="13 87" stroke-dashoffset="-43"/>
-                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#1a6896" stroke-width="6" stroke-dasharray="11 89" stroke-dashoffset="-56"/>
-                <circle cx="21" cy="21" r="15.91" fill="none" stroke="#b7791f" stroke-width="6" stroke-dasharray="8 92" stroke-dashoffset="-67"/>
-                <text x="21" y="23" text-anchor="middle" font-size="5" fill="#003366" font-weight="700">Depts</text>
-              </svg>
-              <div class="donut-legend">
-                <div class="donut-legend-item"><div class="legend-dot" style="background:#003366;"></div><span>Municipal – 39%</span></div>
-                <div class="donut-legend-item"><div class="legend-dot" style="background:#FF6600;"></div><span>Education – 29%</span></div>
-                <div class="donut-legend-item"><div class="legend-dot" style="background:#1a7a3f;"></div><span>Health – 13%</span></div>
-                <div class="donut-legend-item"><div class="legend-dot" style="background:#1a6896;"></div><span>Transport – 11%</span></div>
-                <div class="donut-legend-item"><div class="legend-dot" style="background:#b7791f;"></div><span>Police – 8%</span></div>
+        <!-- Row 2: Pie Chart + Doughnut -->
+        <div class="grid-2" style="gap:22px;margin-bottom:22px;">
+
+          <!-- Chart 3: Pie – Complaint Status Distribution -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🟢 Complaint Status Distribution</h3>
+            </div>
+            <div class="card-body" style="padding:16px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+              <canvas id="chartStatusPie" width="180" height="180" style="max-width:180px;"></canvas>
+              <div style="flex:1;min-width:140px;">
+                <div style="display:flex;flex-direction:column;gap:10px;font-size:0.83rem;">
+                  <div style="display:flex;align-items:center;gap:8px;"><span style="width:12px;height:12px;border-radius:50%;background:#1a7a3f;display:inline-block;flex-shrink:0;"></span><strong>Resolved</strong><span style="margin-left:auto;color:var(--text-muted);">79%</span></div>
+                  <div style="display:flex;align-items:center;gap:8px;"><span style="width:12px;height:12px;border-radius:50%;background:#1a6896;display:inline-block;flex-shrink:0;"></span><strong>In Progress</strong><span style="margin-left:auto;color:var(--text-muted);">13%</span></div>
+                  <div style="display:flex;align-items:center;gap:8px;"><span style="width:12px;height:12px;border-radius:50%;background:#b7791f;display:inline-block;flex-shrink:0;"></span><strong>Pending</strong><span style="margin-left:auto;color:var(--text-muted);">8%</span></div>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Chart 4: Horizontal Bar – Top States by Complaints -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🗺️ Top States by Complaints</h3>
+            </div>
+            <div class="card-body" style="padding:16px;">
+              <canvas id="chartStateBar" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Daily Trend + Resolution Time -->
+        <div class="grid-2" style="gap:22px;margin-bottom:22px;">
+
+          <!-- Chart 5: Line – Weekly Complaint Trend (Last 30 days) -->
+          <div class="card">
+            <div class="card-header">
+              <h3>📅 Weekly Trend – Last 8 Weeks</h3>
+            </div>
+            <div class="card-body" style="padding:16px;">
+              <canvas id="chartWeeklyTrend" height="200"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 6: Bar – Avg Resolution Time by Department -->
+          <div class="card">
+            <div class="card-header">
+              <h3>⏱️ Avg. Resolution Time (Days)</h3>
+            </div>
+            <div class="card-body" style="padding:16px;">
+              <canvas id="chartResolutionTime" height="200"></canvas>
             </div>
           </div>
         </div>
       </div>
+      <!-- ═══ END CHARTS SECTION ═══ -->
 
       <!-- My Complaints Table -->
       <div class="card" style="margin-bottom:24px;">
@@ -379,6 +407,7 @@
   </div><!-- end dashboard-layout -->
 
   <div id="site-footer-placeholder"></div>
+  <script src="js/ai_department.js"></script>
   <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
@@ -393,5 +422,209 @@
     const avatarEl = document.getElementById('userAvatarLetter');
     if (avatarEl) avatarEl.textContent = avatarMap[role] || 'U';
   </script>
+
+  <script>
+  // ── GrievAI Dashboard Charts (Chart.js) ──────────
+  (function() {
+    if (typeof Chart === 'undefined') return;
+
+    var navy    = '#003366';
+    var saffron = '#FF6600';
+    var green   = '#1a7a3f';
+    var blue    = '#1a6896';
+    var amber   = '#b7791f';
+    var red     = '#c0392b';
+    var lightGray = '#e8ecf0';
+
+    Chart.defaults.font.family = "'Noto Sans', Arial, sans-serif";
+    Chart.defaults.font.size   = 11;
+    Chart.defaults.color       = '#4a5568';
+
+    // ── Chart 1: Monthly Line Chart ───────────────
+    var ctx1 = document.getElementById('chartMonthlyLine');
+    if (ctx1) {
+      new Chart(ctx1, {
+        type: 'line',
+        data: {
+          labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+          datasets: [{
+            label: 'Complaints Filed',
+            data: [1800,2100,1600,2500,2900,2200,2700,3100,2400,3000,3300,2800],
+            borderColor: navy,
+            backgroundColor: 'rgba(0,51,102,0.08)',
+            pointBackgroundColor: saffron,
+            pointRadius: 4,
+            tension: 0.35,
+            fill: true,
+            borderWidth: 2
+          },{
+            label: 'Resolved',
+            data: [1650,1900,1480,2300,2700,2000,2500,2850,2200,2800,3100,2600],
+            borderColor: green,
+            backgroundColor: 'rgba(26,122,63,0.05)',
+            pointBackgroundColor: green,
+            pointRadius: 4,
+            tension: 0.35,
+            fill: true,
+            borderWidth: 2,
+            borderDash: [5,3]
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: true,
+          plugins: { legend: { position: 'top' } },
+          scales: {
+            y: { beginAtZero: false, grid: { color: lightGray } },
+            x: { grid: { color: lightGray } }
+          }
+        }
+      });
+    }
+
+    // ── Chart 2: Department Bar Chart ─────────────
+    var ctx2 = document.getElementById('chartDeptBar');
+    if (ctx2) {
+      new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: ['Municipal','Education','Health','Transport','Police','Water','Revenue','PDS'],
+          datasets: [{
+            label: 'No. of Complaints',
+            data: [96847, 72341, 32345, 27380, 19892, 15234, 11002, 8450],
+            backgroundColor: [navy, saffron, green, blue, amber, red, '#6b46c1', '#0d9488'],
+            borderRadius: 4,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: lightGray } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    // ── Chart 3: Status Pie Chart ─────────────────
+    var ctx3 = document.getElementById('chartStatusPie');
+    if (ctx3) {
+      new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+          labels: ['Resolved (79%)', 'In Progress (13%)', 'Pending (8%)'],
+          datasets: [{
+            data: [79, 13, 8],
+            backgroundColor: [green, blue, amber],
+            borderWidth: 3,
+            borderColor: '#fff'
+          }]
+        },
+        options: {
+          responsive: false, cutout: '65%',
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: function(c){ return c.label; } } }
+          }
+        }
+      });
+    }
+
+    // ── Chart 4: State Horizontal Bar ─────────────
+    var ctx4 = document.getElementById('chartStateBar');
+    if (ctx4) {
+      new Chart(ctx4, {
+        type: 'bar',
+        data: {
+          labels: ['Uttar Pradesh','Maharashtra','Bihar','West Bengal','Rajasthan','Madhya Pradesh','Karnataka','Gujarat'],
+          datasets: [{
+            label: 'Complaints',
+            data: [48230, 31540, 26890, 21340, 18760, 17230, 14560, 12890],
+            backgroundColor: [
+              'rgba(0,51,102,0.85)','rgba(255,102,0,0.85)','rgba(0,51,102,0.7)',
+              'rgba(255,102,0,0.7)','rgba(0,51,102,0.6)','rgba(255,102,0,0.6)',
+              'rgba(0,51,102,0.5)','rgba(255,102,0,0.5)'
+            ],
+            borderRadius: 3
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true, maintainAspectRatio: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { beginAtZero: true, grid: { color: lightGray } },
+            y: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    // ── Chart 5: Weekly Trend Line ─────────────────
+    var ctx5 = document.getElementById('chartWeeklyTrend');
+    if (ctx5) {
+      new Chart(ctx5, {
+        type: 'line',
+        data: {
+          labels: ['Wk 1','Wk 2','Wk 3','Wk 4','Wk 5','Wk 6','Wk 7','Wk 8'],
+          datasets: [{
+            label: 'Complaints/Week',
+            data: [620, 780, 590, 910, 840, 760, 1020, 950],
+            borderColor: saffron,
+            backgroundColor: 'rgba(255,102,0,0.12)',
+            pointBackgroundColor: navy,
+            pointRadius: 5,
+            tension: 0.4,
+            fill: true,
+            borderWidth: 2.5
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: true,
+          plugins: { legend: { position: 'top' } },
+          scales: {
+            y: { beginAtZero: false, grid: { color: lightGray } },
+            x: { grid: { color: lightGray } }
+          }
+        }
+      });
+    }
+
+    // ── Chart 6: Resolution Time Bar ──────────────
+    var ctx6 = document.getElementById('chartResolutionTime');
+    if (ctx6) {
+      new Chart(ctx6, {
+        type: 'bar',
+        data: {
+          labels: ['Police','Health','Water','Municipal','Education','Transport','Revenue'],
+          datasets: [{
+            label: 'Avg Days to Resolve',
+            data: [5, 12, 9, 18, 21, 25, 30],
+            backgroundColor: function(context) {
+              var v = context.dataset.data[context.dataIndex];
+              return v <= 10 ? 'rgba(26,122,63,0.8)' : v <= 20 ? 'rgba(183,121,31,0.8)' : 'rgba(192,57,43,0.8)';
+            },
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: true,
+          plugins: { 
+            legend: { display: false },
+            tooltip: { callbacks: { label: function(c){ return c.raw + ' days'; } } }
+          },
+          scales: {
+            y: { beginAtZero: true, grid: { color: lightGray },
+                 title: { display: true, text: 'Days', font: { size: 10 } } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+  })();
+  </script>
+
 </body>
 </html>

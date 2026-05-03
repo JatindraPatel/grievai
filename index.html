@@ -6,7 +6,7 @@
   <meta name="description" content="GrievAI – AI-Based Citizen Grievance Redressal Portal. Government of India. Lodge and track complaints online.">
   <meta name="keywords" content="grievance, complaint, government, india, cpgrams, online grievance">
   <title>GrievAI – Citizen Grievance Portal | Government of India</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 </head>
@@ -127,18 +127,8 @@
                   <label for="femail"><span data-i18n="form.email">Email Address</span></label>
                   <input type="email" id="femail" name="email" class="form-control" placeholder="your@email.com">
                 </div>
-                <div class="form-group">
-                  <label for="fdept"><span data-i18n="form.dept">Department</span> <span class="required">*</span></label>
-                  <select id="fdept" name="department" class="form-control" required>
-                    <option value="" data-i18n="form.dept.ph">-- Select Department --</option>
-                    <option>Ministry of Health &amp; Family Welfare</option>
-                    <option>Department of Education</option>
-                    <option>Transport Authority</option>
-                    <option>Police Department</option>
-                    <option>Municipal Corporation</option>
-                    <option>Other</option>
-                  </select>
-                </div>
+                <!-- AI Auto-Department (hidden manual select removed) -->
+              <input type="hidden" id="fDeptHidden" name="department" value="">
               </div>
               <div class="form-group">
                 <label for="fstate">State / UT <span class="required">*</span></label>
@@ -165,6 +155,8 @@
                 <textarea id="fdesc" name="description" class="form-control" rows="4" placeholder="Describe your grievance in detail. Include dates, locations, and any previous actions taken…" required></textarea>
                 <span class="form-hint">Minimum 50 characters. Be specific for faster resolution.</span>
               </div>
+              <!-- AI Department Detection Display -->
+              <div id="aiDeptDisplay" style="display:none;margin-bottom:18px;background:var(--info-light);border:1.5px solid #bee3f8;border-radius:var(--radius);padding:14px 16px;"></div>
               <div class="form-group">
                 <label>
                   <input type="checkbox" required> I declare that the information provided is true and correct to the best of my knowledge.
@@ -435,6 +427,7 @@
   <!-- Footer Placeholder -->
   <div id="site-footer-placeholder"></div>
 
+  <script src="js/ai_department.js"></script>
   <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
