@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // (Removed from here to prevent double-binding)
 
   // ── AI Auto Department Detection ──────────────────
-  var descField = document.getElementById('fdesc');
+  var descField    = document.getElementById('fdesc');
+  var subjectField = document.getElementById('fsubject');
   function runAIDeptDetection() {
     if (!window.GrievAI_Dept) return;
-    var text = (descField ? descField.value : '');
-    text = text.trim();
+    var text = ((subjectField ? subjectField.value : '') + ' ' + (descField ? descField.value : '')).trim();
     if (text.length < 5) {
       window.GrievAI_Dept.clearDetectionUI();
       return;
@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
     descField.addEventListener('input', runAIDeptDetection);
     descField.addEventListener('blur', runAIDeptDetection);
   }
-
+  if (subjectField) {
+    subjectField.addEventListener('input', runAIDeptDetection);
+  }
 
   // ── FAQ Accordion ────────────────────────────────
   document.querySelectorAll('.faq-question').forEach(btn => {
