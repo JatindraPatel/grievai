@@ -41,16 +41,67 @@ document.addEventListener('DOMContentLoaded', function () {
     complaintForm.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!validateComplaintForm()) return;
+
+      // ── Camera validation (if camera section exists) ──
+      var cameraSection = document.querySelector('.camera-section');
+      if (cameraSection && window.GrievCamera) {
+        var camErrors = window.GrievCamera.validate();
+        if (camErrors.length > 0) {
+          showCameraValidationErrors(camErrors);
+          return;
+        }
+      }
+
       const submitBtn = complaintForm.querySelector('[type="submit"]');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Filing Complaint…';
-      setTimeout(() => {
-        const complaintId = generateComplaintId();
-        showComplaintSuccess(complaintId);
+
+      // ── Build FormData (multipart for backend) ──
+      var formData = new FormData(complaintForm);
+
+      // Add camera data if available
+      if (window.GrievCamera && window.GrievCamera.hasPhoto()) {
+        window.GrievCamera.appendToFormData(formData);
+      }
+
+      // Add language
+      var lang = localStorage.getItem('grievai_lang') || 'en';
+      formData.append('language', lang);
+
+      // ── Try backend API, fallback to demo mode ──
+      var API_BASE = window.GRIEVAI_API || 'http://localhost:8000/api/v1';
+
+      fetch(API_BASE + '/complaints', {
+        method: 'POST',
+        body: formData
+        // No Content-Type header — browser sets multipart boundary automatically
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('API error ' + res.status);
+        return res.json();
+      })
+      .then(function(data) {
+        var complaintId = data.complaint_id || data.id || generateComplaintId();
+        showComplaintSuccess(complaintId, data);
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit Complaint';
         complaintForm.reset();
-      }, 1500);
+        if (window.GrievCamera) window.GrievCamera.reset();
+        resetCameraUI();
+      })
+      .catch(function(err) {
+        // ── Demo/offline mode ──
+        console.warn('[GrievAI] Backend unavailable, demo mode:', err.message);
+        setTimeout(function() {
+          var complaintId = generateComplaintId();
+          showComplaintSuccess(complaintId, null);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Complaint';
+          complaintForm.reset();
+          if (window.GrievCamera) window.GrievCamera.reset();
+          resetCameraUI();
+        }, 1200);
+      });
     });
   }
 
@@ -468,3 +519,218 @@ document.addEventListener('DOMContentLoaded', function() {
 (function() {
   var _hamburger = null; // intentional no-op
 })();
+
+// ====================================================
+// GrievAI – Camera + Geo Integration Functions
+// Called from index.html inline onclick handlers
+// ====================================================
+
+// ── Start camera ─────────────────────────────────
+function startComplaintCamera() {
+  var wrap = document.getElementById('cameraVideoWrap');
+  if (wrap) wrap.style.display = 'block';
+
+  var captureBtn = document.getElementById('btnCapture');
+  if (captureBtn) captureBtn.disabled = false;
+
+  var retakeBtn = document.getElementById('btnRetake');
+  if (retakeBtn) retakeBtn.style.display = 'none';
+
+  var previewWrap = document.getElementById('previewWrap');
+  if (previewWrap) previewWrap.classList.remove('visible');
+
+  var previewImg = document.getElementById('capturedPreview');
+  if (previewImg) previewImg.style.display = 'none';
+
+  if (window.GrievCamera) {
+    window.GrievCamera.initCamera('cameraVideo', 'cameraStatus');
+  }
+}
+
+// ── Get GPS location ──────────────────────────────
+function getComplaintLocation() {
+  if (window.GrievCamera) {
+    window.GrievCamera.fetchLocation('locationStatus', 'cameraCoords');
+  }
+}
+
+// ── Capture photo ─────────────────────────────────
+function captureComplaintPhoto() {
+  if (!window.GrievCamera) return;
+
+  window.GrievCamera.capturePhoto(
+    'cameraVideo',
+    'capturedPreview',
+    'cameraStatus',
+    function(blob) {
+      if (!blob) return;
+
+      // Show preview section
+      var previewWrap = document.getElementById('previewWrap');
+      if (previewWrap) previewWrap.classList.add('visible');
+
+      var previewImg = document.getElementById('capturedPreview');
+      if (previewImg) previewImg.style.display = 'block';
+
+      // Hide video, show retake
+      var wrap = document.getElementById('cameraVideoWrap');
+      if (wrap) wrap.style.display = 'none';
+
+      var captureBtn = document.getElementById('btnCapture');
+      if (captureBtn) captureBtn.disabled = true;
+
+      var retakeBtn = document.getElementById('btnRetake');
+      if (retakeBtn) retakeBtn.style.display = 'flex';
+
+      // Clear validation errors
+      hideCameraValidationErrors();
+    }
+  );
+}
+
+// ── Retake photo ──────────────────────────────────
+function retakePhoto() {
+  if (window.GrievCamera) {
+    window.GrievCamera.stopCamera();
+  }
+
+  // Reset UI
+  var previewWrap = document.getElementById('previewWrap');
+  if (previewWrap) previewWrap.classList.remove('visible');
+
+  var previewImg = document.getElementById('capturedPreview');
+  if (previewImg) {
+    previewImg.style.display = 'none';
+    previewImg.src = '';
+  }
+
+  var cameraStatus = document.getElementById('cameraStatus');
+  if (cameraStatus) cameraStatus.style.display = 'none';
+
+  hideCameraValidationErrors();
+
+  // Restart
+  startComplaintCamera();
+}
+
+// ── Show validation errors ────────────────────────
+function showCameraValidationErrors(errors) {
+  var errBox  = document.getElementById('cameraValidationError');
+  var errList = document.getElementById('cameraValidationList');
+  if (!errBox || !errList) return;
+
+  errList.innerHTML = errors.map(function(e) {
+    return '<li>' + e + '</li>';
+  }).join('');
+
+  errBox.style.display = 'block';
+  errBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── Hide validation errors ────────────────────────
+function hideCameraValidationErrors() {
+  var errBox = document.getElementById('cameraValidationError');
+  if (errBox) errBox.style.display = 'none';
+}
+
+// ── Override complaint form submit with camera validation ──
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('complaintForm');
+  if (!form) return;
+
+  // Store original submit handler reference
+  var originalSubmit = form.onsubmit;
+
+  form.addEventListener('submit', function(e) {
+    // Only validate camera if camera section is present on this page
+    var cameraSection = document.querySelector('.camera-section');
+    if (!cameraSection) return; // no camera on this page — skip
+
+    // Validate camera & location
+    if (window.GrievCamera) {
+      var errors = window.GrievCamera.validate();
+      if (errors.length > 0) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        showCameraValidationErrors(errors);
+        return false;
+      }
+    }
+  }, true); // capture phase — runs before other handlers
+});
+
+// ── Reset camera UI after submit ──────────────────
+function resetCameraUI() {
+  // Hide video wrap
+  var wrap = document.getElementById('cameraVideoWrap');
+  if (wrap) wrap.style.display = 'none';
+
+  // Hide preview
+  var previewWrap = document.getElementById('previewWrap');
+  if (previewWrap) previewWrap.classList.remove('visible');
+
+  var previewImg = document.getElementById('capturedPreview');
+  if (previewImg) { previewImg.src = ''; previewImg.style.display = 'none'; }
+
+  // Reset buttons
+  var captureBtn = document.getElementById('btnCapture');
+  if (captureBtn) captureBtn.disabled = true;
+
+  var retakeBtn = document.getElementById('btnRetake');
+  if (retakeBtn) retakeBtn.style.display = 'none';
+
+  // Hide statuses
+  ['cameraStatus','locationStatus','cameraCoords','cameraValidationError'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+}
+
+// ── Override showComplaintSuccess to show AI classification ──
+var _origShowComplaintSuccess = window.showComplaintSuccess;
+window.showComplaintSuccess = function(id, apiData) {
+  var result = document.getElementById('complaintResult');
+  if (!result) return;
+
+  // Build extra info from API response if available
+  var extraInfo = '';
+  if (apiData) {
+    extraInfo = '\
+      <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">\
+        <div style="background:#f0f8ff;border:1px solid #bee3f8;border-radius:4px;padding:8px;">\
+          <small style="color:#718096;font-size:0.72rem;display:block;">🤖 AI Category</small>\
+          <strong style="color:#003366;">' + (apiData.category || 'Classified') + '</strong>\
+        </div>\
+        <div style="background:#f0fff4;border:1px solid #b7e4c7;border-radius:4px;padding:8px;">\
+          <small style="color:#718096;font-size:0.72rem;display:block;">⚡ Priority</small>\
+          <strong style="color:#1a7a3f;">' + (apiData.priority || 'Medium') + '</strong>\
+        </div>\
+        <div style="background:#fff5f0;border:1px solid #ffd0a0;border-radius:4px;padding:8px;">\
+          <small style="color:#718096;font-size:0.72rem;display:block;">🏛️ Department</small>\
+          <strong style="color:#cc4400;">' + (apiData.department || 'Auto-assigned') + '</strong>\
+        </div>\
+        <div style="background:#f8f0ff;border:1px solid #d6b4f0;border-radius:4px;padding:8px;">\
+          <small style="color:#718096;font-size:0.72rem;display:block;">📊 Status</small>\
+          <strong style="color:#6b21a8;">' + (apiData.status || 'Pending') + '</strong>\
+        </div>\
+      </div>';
+    if (apiData.latitude || apiData.longitude) {
+      extraInfo += '<div style="margin-top:8px;background:#f0f8f0;border:1px solid #b7e4c7;border-radius:4px;padding:8px;font-size:0.8rem;color:#1a7a3f;">\
+        📍 Geo-verified: Lat ' + (apiData.latitude || window.GrievCamera && window.GrievCamera.getLatitude()) +
+        ' | Lng ' + (apiData.longitude || window.GrievCamera && window.GrievCamera.getLongitude()) + '</div>';
+    }
+  }
+
+  result.innerHTML = '\
+    <div class="alert alert-success" style="flex-direction:column;gap:8px;">\
+      <strong>✅ Complaint Filed Successfully!</strong>\
+      <span>Your Complaint ID: <strong style="font-size:1.05rem;letter-spacing:1px;">' + id + '</strong></span>\
+      <span style="font-size:0.82rem;">Save this ID to track your complaint. SMS/Email updates will be sent.</span>\
+      ' + extraInfo + '\
+      <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">\
+        <a href="track.html" class="btn btn-navy btn-sm">Track Complaint</a>\
+        <button onclick="copyToClipboard(\'' + id + '\')" class="btn btn-outline-navy btn-sm">Copy ID</button>\
+      </div>\
+    </div>';
+  result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+};
