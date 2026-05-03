@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQ | GrievAI – Government of India</title>
- <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
@@ -20,8 +21,8 @@
 
   <div class="page-hero">
     <div class="page-hero-inner">
-      <h1 data-i18n="page.faq.title">❓ Frequently Asked Questions</h1>
-      <p>Find answers to common questions about using the GrievAI Grievance Portal.</p>
+      <h1 data-i18n="page.faq.h1">❓ Frequently Asked Questions</h1>
+      <p data-i18n="page.faq.desc">Find answers to common questions about using the GrievAI Grievance Portal.</p>
     </div>
   </div>
 
@@ -34,8 +35,8 @@
         <!-- Section: General -->
         <div style="margin-bottom:32px;">
           <div class="section-header" style="margin-bottom:16px;">
-            <span class="section-tag">General</span>
-            <h2>General Questions</h2>
+            <span class="section-tag" data-i18n="feat.tag">General</span>
+            <h2><span data-i18n="nav.faq">General Questions</span></h2>
           </div>
           <div class="faq-accordion">
 
@@ -98,7 +99,7 @@
         <!-- Section: Filing -->
         <div style="margin-bottom:32px;">
           <div class="section-header" style="margin-bottom:16px;">
-            <span class="section-tag">Filing Complaints</span>
+            <span class="section-tag" data-i18n="how.tag">Filing Complaints</span>
             <h2>Filing a Complaint</h2>
           </div>
           <div class="faq-accordion">
@@ -180,7 +181,7 @@
         <!-- Section: Tracking -->
         <div style="margin-bottom:32px;">
           <div class="section-header" style="margin-bottom:16px;">
-            <span class="section-tag">Tracking</span>
+            <span class="section-tag" data-i18n="nav.sitemap">Tracking &amp; Status</span>
             <h2>Tracking &amp; Status</h2>
           </div>
           <div class="faq-accordion">
@@ -240,7 +241,7 @@
         <!-- Section: Technical -->
         <div style="margin-bottom:32px;">
           <div class="section-header" style="margin-bottom:16px;">
-            <span class="section-tag">Technical</span>
+            <span class="section-tag" data-i18n="nav.security">Technical</span>
             <h2>Technical &amp; Account Questions</h2>
           </div>
           <div class="faq-accordion">
@@ -305,7 +306,7 @@
       <!-- Sidebar -->
       <div style="display:flex;flex-direction:column;gap:20px;">
         <div class="info-panel">
-          <h4>🔗 Quick Links</h4>
+          <h4>🔗 <span data-i18n="footer.quicklinks">Quick Links</span></h4>
           <ul>
             <li><a href="index.html#lodge">📝 Lodge Complaint</a></li>
             <li><a href="track.html">🔍 Track Complaint</a></li>
@@ -326,7 +327,7 @@
         </div>
 
         <div class="info-panel">
-          <h4>💬 Chat with GrievBot</h4>
+          <h4>💬 <span data-i18n="bot.label">Chat with GrievBot</span></h4>
           <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:12px;">Get instant answers from our AI chatbot available 24×7.</p>
           <button onclick="document.getElementById('chatbotToggle').click()" class="btn btn-navy btn-sm btn-full">🤖 Open Chatbot</button>
         </div>
@@ -335,6 +336,7 @@
   </div>
 
   <div id="site-footer-placeholder"></div>
+  <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>

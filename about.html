@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="About GrievAI — India's AI-powered citizen grievance redressal portal by Government of India. Learn about our mission, features, technology, and impact.">
   <title>About GrievAI | Government of India</title>
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Serif:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <style>
     /* ── About Page Specific Styles ── */
@@ -72,7 +73,7 @@
       font-size: 4rem;
       flex-shrink: 0;
     }
- 
+
     /* Stats strip */
     .stats-strip {
       background: var(--white);
@@ -119,7 +120,7 @@
       border-radius: 10px;
       margin-top: 5px;
     }
- 
+
     /* Why GrievAI section */
     .why-card {
       background: var(--white);
@@ -173,7 +174,7 @@
       align-items: center;
       gap: 6px;
     }
- 
+
     /* Comparison table */
     .compare-table {
       width: 100%;
@@ -199,7 +200,7 @@
     .compare-table .check { color: var(--success); font-size: 1rem; }
     .compare-table .cross { color: var(--error); font-size: 1rem; }
     .compare-table .partial { color: var(--warning); font-size: 1rem; }
- 
+
     /* Timeline / roadmap */
     .roadmap-item {
       display: flex;
@@ -256,7 +257,7 @@
       color: var(--text-secondary);
       line-height: 1.6;
     }
- 
+
     /* Leadership */
     .leader-card {
       background: var(--white);
@@ -284,7 +285,7 @@
     .leader-card h4 { font-family: var(--font-serif); color: var(--navy); font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
     .leader-card .designation { font-size: 0.78rem; color: var(--saffron); font-weight: 600; margin-bottom: 6px; }
     .leader-card .dept { font-size: 0.75rem; color: var(--text-muted); }
- 
+
     /* Award cards */
     .award-card {
       background: var(--white);
@@ -303,7 +304,7 @@
     }
     .award-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
     .award-card p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
- 
+
     /* Responsive */
     @media (max-width: 768px) {
       .stats-strip-inner { grid-template-columns: 1fr 1fr; }
@@ -318,7 +319,7 @@
 </head>
 <body>
   <div id="site-header-placeholder"></div>
- 
+
   <!-- Breadcrumb -->
   <div class="breadcrumb-bar">
     <div class="breadcrumb-inner">
@@ -327,7 +328,7 @@
       <span>About GrievAI</span>
     </div>
   </div>
- 
+
   <!-- Hero Strip -->
   <div class="about-hero-strip">
     <div class="inner">
@@ -335,8 +336,8 @@
         <span style="background:var(--saffron);color:#fff;font-size:0.72rem;font-weight:700;padding:4px 12px;border-radius:3px;letter-spacing:0.8px;text-transform:uppercase;display:inline-block;margin-bottom:14px;">
           8th Schedule — All 22 Official Languages Supported
         </span>
-        <h1 data-i18n="page.about.title">🏛️ About GrievAI Portal</h1>
-        <p>India's most advanced AI-powered citizen grievance redressal system — built for scale, transparency, and accountability. Covering every district, every department, every citizen.</p>
+        <h1 data-i18n="page.about.h1">🏛️ About GrievAI Portal</h1>
+        <p data-i18n="page.about.desc">India's most advanced AI-powered citizen grievance redressal system — built for scale, transparency, and accountability. Covering every district, every department, every citizen.</p>
         <div class="hero-badge-row">
           <span class="abadge">🤖 AI/NLP Powered</span>
           <span class="abadge">🔒 ISO 27001 Certified</span>
@@ -347,13 +348,13 @@
       <div class="hero-emblem">🏛️</div>
     </div>
   </div>
- 
+
   <!-- Live Stats Strip -->
   <div class="stats-strip">
     <div class="stats-strip-inner">
       <div class="stat-item">
         <span class="s-num" data-count="248563" data-suffix="+">2,48,563+</span>
-        <span class="s-label">Total Complaints Filed</span>
+        <span class="s-label"></span><span style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:6px;display:block;" data-i18n="stat.filed">Total Complaints Filed</span>
         <span class="s-change">↑ 18% this year</span>
       </div>
       <div class="stat-item">
@@ -373,18 +374,18 @@
       </div>
     </div>
   </div>
- 
+
   <div class="page-content">
- 
+
     <!-- ══ SECTION 1: Mission & Vision ══ -->
     <div class="grid-2" style="gap:28px;margin-bottom:40px;">
       <div class="about-mission">
-        <h3>🎯 Our Mission</h3>
+        <h3>🎯 <span data-i18n="how.s1.title">Our Mission</span></h3>
         <p>To provide every citizen of India — regardless of location, language, digital literacy, or socioeconomic background — with a <strong>transparent, accessible, and time-bound</strong> mechanism to voice their grievances against government departments and public service providers.</p>
         <p style="margin-top:12px;font-size:0.9rem;color:rgba(255,255,255,0.78);">We believe that every complaint is an opportunity to improve governance. GrievAI turns citizen feedback into actionable intelligence for policy reform.</p>
       </div>
       <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);">
-        <h3 style="font-family:var(--font-serif);color:var(--navy);font-size:1.1rem;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--saffron);">🔭 Our Vision</h3>
+        <h3 style="font-family:var(--font-serif);color:var(--navy);font-size:1.1rem;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--saffron);">🔭 <span data-i18n="how.s4.title">Our Vision</span></h3>
         <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;margin-bottom:14px;">To make India a <strong>zero-grievance nation</strong> by 2030 — where every citizen's concern is heard, acted upon, and resolved within stipulated timelines, driven by artificial intelligence and accountable governance.</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;">
           <div style="display:flex;align-items:flex-start;gap:10px;">
@@ -406,17 +407,17 @@
         </div>
       </div>
     </div>
- 
+
     <!-- ══ SECTION 2: WHY CHOOSE GRIEVAI ══ -->
     <section style="margin-bottom:44px;">
       <div class="section-header">
-        <span class="section-tag">Why GrievAI?</span>
-        <h2>10 Reasons Why Citizens &amp; Officers Choose GrievAI</h2>
+        <span class="section-tag" data-i18n="feat.tag">Why GrievAI?</span>
+        <h2><span data-i18n="feat.title">Why Choose GrievAI?</span> &amp; Officers Choose GrievAI</h2>
         <p>GrievAI is not just a complaint box — it is a complete, end-to-end grievance management ecosystem built on modern technology and citizen-first principles.</p>
       </div>
- 
+
       <div class="grid-2" style="gap:20px;">
- 
+
         <!-- Card 1 -->
         <div class="why-card">
           <div class="wc-icon">🤖</div>
@@ -424,63 +425,63 @@
           <p>Our Natural Language Processing (NLP) engine reads your complaint, understands the context, and automatically routes it to the correct department — eliminating manual sorting delays. Supports classification in all 22 Indian languages.</p>
           <div class="wc-proof">📊 94.2% classification accuracy | Average routing time: 3 seconds</div>
         </div>
- 
+
         <!-- Card 2 -->
         <div class="why-card">
           <div class="wc-icon">🔍</div>
-          <h4>Real-Time Tracking — No Login Required</h4>
+          <h4 data-i18n="feat.2.title">Real-Time Tracking</h4>
           <p>Unlike traditional systems where you must create an account to track your complaint, GrievAI lets every citizen track their complaint status using just a Complaint ID — anytime, anywhere, on any device.</p>
           <div class="wc-proof">🕐 Status updated in real-time | SMS alerts at every stage</div>
         </div>
- 
+
         <!-- Card 3 -->
         <div class="why-card">
           <div class="wc-icon">⬆️</div>
-          <h4>Strict Auto-Escalation Policy</h4>
+          <h4 data-i18n="feat.4.title">Auto Escalation</h4>
           <p>No complaint can be ignored. If an officer fails to act within the stipulated timeline, GrievAI automatically escalates the complaint to the next senior official — Section Officer → Joint Secretary → Ministry Head — without the citizen having to do anything.</p>
           <div class="wc-proof">⏱️ 30-day maximum limit strictly enforced | 3-tier escalation matrix</div>
         </div>
- 
+
         <!-- Card 4 -->
         <div class="why-card">
           <div class="wc-icon">🌐</div>
-          <h4>All 22 Scheduled Languages Supported</h4>
+          <h4>All 22 Languages Supported</h4>
           <p>India speaks in many voices. GrievAI supports all 22 officially scheduled languages of the Indian Constitution's 8th Schedule — including RTL languages like Urdu, Sindhi, and Kashmiri. No citizen is excluded due to language barriers.</p>
           <div class="wc-proof">🗣️ 22 languages | 3 RTL scripts | Custom Noto fonts for every script</div>
         </div>
- 
+
         <!-- Card 5 -->
         <div class="why-card">
           <div class="wc-icon">🔒</div>
-          <h4>Bank-Grade Security &amp; Privacy</h4>
+          <h4 data-i18n="feat.5.title">Secure &amp; Confidential &amp; Privacy</h4>
           <p>Your personal data and complaint details are protected with 256-bit SSL/TLS encryption, stored on NIC's (National Informatics Centre) Government of India secure Meghraj cloud, and are fully compliant with the IT Act 2000 and upcoming DPDPA 2023 norms.</p>
           <div class="wc-proof">🛡️ ISO 27001 | VAPT Tested by CERT-In | OWASP Top 10 Secured</div>
         </div>
- 
+
         <!-- Card 6 -->
         <div class="why-card">
           <div class="wc-icon">📊</div>
-          <h4>Analytics Dashboard for Governance</h4>
+          <h4>Analytics Dashboard</h4>
           <p>Administrators and policymakers get access to real-time analytics — complaint heatmaps by district, department performance scorecards, trend analysis, and predictive insights — helping identify systemic governance failures before they become crises.</p>
           <div class="wc-proof">📈 District-level dashboards | Export to PDF/Excel | Weekly auto-reports</div>
         </div>
- 
+
         <!-- Card 7 -->
         <div class="why-card">
           <div class="wc-icon">📱</div>
-          <h4>Truly Omni-Channel Access</h4>
+          <h4 data-i18n="feat.6.title">Mobile Friendly</h4>
           <p>GrievAI meets citizens where they are. File a complaint via the web portal, Android/iOS mobile app, IVRS phone call (1800-11-7781), SMS (GRIEVA to 56677), or visit any Common Service Centre (CSC) in your district. No internet access? No problem.</p>
           <div class="wc-proof">📞 Web | App | SMS | IVRS | CSC | Offline Form</div>
         </div>
- 
+
         <!-- Card 8 -->
         <div class="why-card">
           <div class="wc-icon">⚡</div>
-          <h4>Zero Bureaucratic Delay at Filing</h4>
+          <h4>Zero Filing Delay</h4>
           <p>Filing a complaint takes under 2 minutes. No physical visit required, no paperwork, no queue. Our AI pre-fills department suggestions based on your complaint text, making the process intuitive even for first-time users and digitally inexperienced citizens.</p>
           <div class="wc-proof">⏱️ Average filing time: 90 seconds | Zero queue | 24×7 availability</div>
         </div>
- 
+
         <!-- Card 9 -->
         <div class="why-card">
           <div class="wc-icon">♿</div>
@@ -488,7 +489,7 @@
           <p>GrievAI is built to WCAG 2.1 Level AA accessibility standards. Full screen reader compatibility (JAWS, NVDA, VoiceOver), keyboard navigation, high-contrast mode, adjustable font sizes, and simplified interface options for elderly and differently-abled citizens.</p>
           <div class="wc-proof">♿ WCAG 2.1 AA | Screen reader support | High contrast mode</div>
         </div>
- 
+
         <!-- Card 10 -->
         <div class="why-card">
           <div class="wc-icon">🏛️</div>
@@ -496,14 +497,14 @@
           <p>GrievAI is not a voluntary service — it is backed by the Public Grievances Policy, Citizens' Charter Act obligations, RTI Act 2005, and Constitutional directives on good governance (Article 39A, 41). Every department is legally required to respond within 30 days.</p>
           <div class="wc-proof">⚖️ Legally enforceable | RTI integrated | Citizens' Charter compliant</div>
         </div>
- 
+
       </div>
     </section>
- 
+
     <!-- ══ SECTION 3: GrievAI vs Old System ══ -->
     <section style="margin-bottom:44px;">
       <div class="section-header">
-        <span class="section-tag">Comparison</span>
+        <span class="section-tag" data-i18n="how.tag">Comparison</span>
         <h2>GrievAI vs. Traditional Grievance Systems</h2>
         <p>How GrievAI transforms the citizen grievance experience compared to legacy manual and semi-digital systems.</p>
       </div>
@@ -581,11 +582,11 @@
         </table>
       </div>
     </section>
- 
+
     <!-- ══ SECTION 4: Technology Stack ══ -->
     <section style="margin-bottom:44px;">
       <div class="section-header">
-        <span class="section-tag">Technology</span>
+        <span class="section-tag" data-i18n="nav.security">Technology</span>
         <h2>Technology That Powers GrievAI</h2>
         <p>Built on Government of India–approved infrastructure, following GIGW and NIC security standards.</p>
       </div>
@@ -622,11 +623,11 @@
         </div>
       </div>
     </section>
- 
+
     <!-- ══ SECTION 5: Journey / Roadmap ══ -->
     <section style="margin-bottom:44px;">
       <div class="section-header">
-        <span class="section-tag">Our Journey</span>
+        <span class="section-tag" data-i18n="how.tag">Our Journey</span>
         <h2>GrievAI — From Inception to National Scale</h2>
         <p>A timeline of milestones that shaped India's most citizen-centric grievance platform.</p>
       </div>
@@ -685,7 +686,7 @@
         </div>
       </div>
     </section>
- 
+
     <!-- ══ SECTION 6: Impact Numbers ══ -->
     <section style="background:linear-gradient(135deg,var(--navy-dark),var(--navy));border-radius:var(--radius-lg);padding:44px 32px;margin-bottom:44px;color:#fff;">
       <div class="section-header" style="margin-bottom:28px;">
@@ -700,7 +701,7 @@
         </div>
         <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:22px;text-align:center;">
           <span style="font-size:2.2rem;font-weight:700;color:#48bb78;font-family:var(--font-serif);display:block;" data-count="213490" data-suffix="+">2,13,490+</span>
-          <span style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:6px;display:block;">Resolved Successfully</span>
+          <span style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:6px;display:block;"></span><span style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:6px;display:block;" data-i18n="stat.resolved">Resolved Successfully</span>
         </div>
         <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:22px;text-align:center;">
           <span style="font-size:2.2rem;font-weight:700;color:var(--saffron);font-family:var(--font-serif);display:block;" data-count="14">14</span>
@@ -720,11 +721,11 @@
         </div>
       </div>
     </section>
- 
+
     <!-- ══ SECTION 7: Awards & Recognition ══ -->
     <section style="margin-bottom:44px;">
       <div class="section-header">
-        <span class="section-tag">Recognition</span>
+        <span class="section-tag" data-i18n="feat.tag">Recognition</span>
         <h2>Awards &amp; Recognition</h2>
         <p>GrievAI has been recognised nationally and internationally for excellence in e-governance and citizen services.</p>
       </div>
@@ -759,11 +760,11 @@
         </div>
       </div>
     </section>
- 
+
     <!-- ══ SECTION 8: Leadership ══ -->
     <section style="margin-bottom:44px;">
       <div class="section-header">
-        <span class="section-tag">Leadership</span>
+        <span class="section-tag" data-i18n="feat.tag">Leadership</span>
         <h2>The Team Behind GrievAI</h2>
         <p>Senior officials and domain experts who guide the vision, policy, and execution of India's largest citizen grievance platform.</p>
       </div>
@@ -794,11 +795,11 @@
         </div>
       </div>
     </section>
- 
+
     <!-- ══ SECTION 9: Legal Framework ══ -->
     <section style="margin-bottom:44px;">
       <div class="section-header">
-        <span class="section-tag">Legal Basis</span>
+        <span class="section-tag" data-i18n="footer.legal">Legal Basis</span>
         <h2>Constitutional &amp; Legal Framework</h2>
         <p>GrievAI is not a discretionary service — it operates within a robust constitutional and legislative mandate.</p>
       </div>
@@ -825,7 +826,7 @@
         </div>
       </div>
     </section>
- 
+
     <!-- ══ CTA ══ -->
     <div style="background:linear-gradient(135deg,var(--saffron),#e65c00);border-radius:var(--radius-lg);padding:44px 32px;text-align:center;color:#fff;">
       <h2 style="font-family:var(--font-serif);font-size:1.8rem;margin-bottom:12px;">Every Complaint Counts. Every Citizen Matters.</h2>
@@ -837,12 +838,13 @@
       </div>
       <p style="color:rgba(255,255,255,0.65);font-size:0.78rem;margin-top:18px;">📞 Helpline: 1800-11-7781 (Toll Free) &nbsp;|&nbsp; 📧 grievances@gov.in &nbsp;|&nbsp; Mon–Fri, 9AM–5:30PM</p>
     </div>
- 
+
   </div><!-- end .page-content -->
- 
+
   <!-- Footer -->
   <div id="site-footer-placeholder"></div>
- 
+
+  <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>

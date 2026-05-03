@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Track Complaint | GrievAI – Government of India</title>
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
@@ -20,8 +21,8 @@
 
   <div class="page-hero">
     <div class="page-hero-inner">
-      <h1 data-i18n="track.box.title">🔍 Track Your Complaint</h1>
-      <p>Enter your Complaint ID to view real-time status and updates. No login required.</p>
+      <h1 data-i18n="track.box.h3">🔍 Track Your Complaint</h1>
+      <p data-i18n="page.track.desc">Enter your Complaint ID to view real-time status and updates. No login required.</p>
     </div>
   </div>
 
@@ -35,7 +36,7 @@
           <div class="form-section-header">
             <div class="form-section-icon">🔍</div>
             <div>
-              <h2>Complaint Tracker</h2>
+              <h2 data-i18n="track.box.h3">Complaint Tracker</h2>
               <p>Track by Complaint ID — No login required</p>
             </div>
           </div>
@@ -46,7 +47,7 @@
             </div>
             <form class="track-form" id="mainTrackForm" novalidate>
               <div class="form-group">
-                <label for="trackId">Complaint ID <span class="required">*</span></label>
+                <label for="trackId"><span data-i18n="form.name">Complaint ID</span> <span class="required">*</span></label>
                 <input type="text" id="trackId" name="complaintId" class="form-control track-id-input"
                   placeholder="e.g. GRIEVA/2024/783421"
                   style="font-size:1.05rem;letter-spacing:1px;text-transform:uppercase;"
@@ -195,6 +196,7 @@
   </div>
 
   <div id="site-footer-placeholder"></div>
+  <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>

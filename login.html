@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | GrievAI – Government of India</title>
- <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
@@ -36,9 +37,9 @@
 
         <!-- Tabs -->
         <div class="login-tabs">
-          <button class="login-tab active" data-role="citizen" data-i18n="login.tab.citizen">👤 Citizen</button>
-          <button class="login-tab" data-role="officer" data-i18n="login.tab.officer">🏛️ Officer</button>
-          <button class="login-tab" data-role="admin" data-i18n="login.tab.admin">⚙️ Admin</button>
+          <button class="login-tab active" data-role="citizen" data-i18n="login.tab.c">👤 Citizen</button>
+          <button class="login-tab" data-role="officer" data-i18n="login.tab.o">🏛️ Officer</button>
+          <button class="login-tab" data-role="admin" data-i18n="login.tab.a">⚙️ Admin</button>
         </div>
 
         <!-- ─── Citizen Panel ─── -->
@@ -47,7 +48,7 @@
             <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:18px;">Login with your Aadhaar-linked mobile number or registered email to access your complaint history and profile.</p>
             <form id="citizenForm" data-role="citizen" novalidate>
               <div class="form-group">
-                <label for="cMobile">Mobile Number / Email <span class="required">*</span></label>
+                <label for="cMobile"><span data-i18n="form.mobile">Mobile Number</span> <span class="required">*</span></label>
                 <input type="text" id="cMobile" class="form-control" placeholder="10-digit mobile or email" required>
               </div>
               <div class="form-group">
@@ -67,9 +68,9 @@
                 <label style="margin:0;font-weight:400;"><input type="checkbox"> Remember me</label>
                 <a href="#" style="font-size:0.82rem;">Forgot Password?</a>
               </div>
-              <button type="submit" class="btn btn-primary btn-full" data-i18n="login.btn.citizen">🔓 Login as Citizen</button>
+              <button type="submit" class="btn btn-primary btn-full" data-i18n="login.btn.c">🔓 Login as Citizen</button>
               <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--text-muted);">
-                Don't have an account? <a href="#">Register Now</a>
+                <span data-i18n="login.tab.c">👤 Citizen</span> <a href="#">Register Now</a>
               </p>
             </form>
           </div>
@@ -84,11 +85,11 @@
             </div>
             <form id="officerForm" data-role="officer" novalidate>
               <div class="form-group">
-                <label for="oEmpId">Employee ID / Service Number <span class="required">*</span></label>
+                <label for="oEmpId">Employee ID <span class="required">*</span></label>
                 <input type="text" id="oEmpId" class="form-control" placeholder="e.g. IAS-2024-MH-001" required>
               </div>
               <div class="form-group">
-                <label for="oDept">Department <span class="required">*</span></label>
+                <label for="oDept"><span data-i18n="form.dept">Department</span> <span class="required">*</span></label>
                 <select id="oDept" class="form-control" required>
                   <option value="">-- Select Department --</option>
                   <option>Ministry of Health &amp; Family Welfare</option>
@@ -167,6 +168,7 @@
   </div>
 
   <div id="site-footer-placeholder"></div>
+  <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>

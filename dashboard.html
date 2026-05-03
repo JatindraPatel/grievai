@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | GrievAI – Government of India</title>
- <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
   <style>
     /* Dashboard-specific overrides */
@@ -106,7 +107,7 @@
           <span class="dash-date" id="dashDate"></span>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="index.html#lodge" class="btn btn-primary" data-i18n="btn.lodge">📝 Lodge Complaint</a>
+          <a href="index.html#lodge" class="btn btn-primary" data-i18n="dash.btn.lodge">📝 Lodge Complaint</a>
           <a href="track.html" class="btn btn-outline-navy">🔍 Track</a>
         </div>
       </div>
@@ -115,22 +116,22 @@
       <div class="kpi-grid">
         <div class="kpi-card saffron">
           <span class="kpi-value" data-count="12">12</span>
-          <div class="kpi-label">My Complaints</div>
+          <div class="kpi-label" data-i18n="dash.kpi.my">My Complaints</div>
           <span class="kpi-change up">↑ 2 this month</span>
         </div>
         <div class="kpi-card green">
           <span class="kpi-value" data-count="9">9</span>
-          <div class="kpi-label">Resolved</div>
+          <div class="kpi-label" data-i18n="dash.kpi.res">Resolved</div>
           <span class="kpi-change up">↑ 75% rate</span>
         </div>
         <div class="kpi-card blue">
           <span class="kpi-value" data-count="2">2</span>
-          <div class="kpi-label">In Progress</div>
+          <div class="kpi-label" data-i18n="dash.kpi.prog">In Progress</div>
           <span class="kpi-change">Active</span>
         </div>
         <div class="kpi-card red">
           <span class="kpi-value" data-count="1">1</span>
-          <div class="kpi-label">Pending Review</div>
+          <div class="kpi-label" data-i18n="dash.kpi.pend">Pending Review</div>
           <span class="kpi-change down">Awaiting action</span>
         </div>
         <div class="kpi-card" data-role="officer,admin" style="display:none;">
@@ -161,7 +162,7 @@
         <!-- Monthly Trend -->
         <div class="card">
           <div class="card-header">
-            <h3>📈 Monthly Complaint Trend (2024)</h3>
+            <h3>📈 <span data-i18n="stat.filed">Complaints</span> Monthly Trend (2024)</h3>
           </div>
           <div class="card-body">
             <div style="padding-top:22px;">
@@ -218,7 +219,7 @@
       <!-- My Complaints Table -->
       <div class="card" style="margin-bottom:24px;">
         <div class="card-header">
-          <h3>📋 My Recent Complaints</h3>
+          <h3>📋 <span data-i18n="dash.kpi.my">My Complaints</span></h3>
           <div style="display:flex;gap:8px;">
             <a href="index.html#lodge" class="btn btn-primary btn-sm">+ New</a>
             <a href="track.html" class="btn btn-outline-navy btn-sm">Track All</a>
@@ -378,6 +379,7 @@
   </div><!-- end dashboard-layout -->
 
   <div id="site-footer-placeholder"></div>
+  <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>

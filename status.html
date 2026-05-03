@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Complaint Status | GrievAI – Government of India</title>
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
@@ -22,8 +23,8 @@
 
   <div class="page-hero">
     <div class="page-hero-inner">
-      <h1 data-i18n="page.status.title">📋 Complaint Status</h1>
-      <p>View detailed status report, timeline, and officer remarks for your complaint.</p>
+      <h1 data-i18n="page.status.h1">📋 Complaint Status</h1>
+      <p data-i18n="page.status.desc">View detailed status report, timeline, and officer remarks for your complaint.</p>
     </div>
   </div>
 
@@ -35,7 +36,7 @@
         <!-- Status Query Form -->
         <div class="card" style="margin-bottom:28px;">
           <div class="card-header">
-            <h3>🔎 Check Complaint Status</h3>
+            <h3>🔎 <span data-i18n="track.box.h3">Check Status</span></h3>
           </div>
           <div class="card-body">
             <div class="form-note">
@@ -49,7 +50,7 @@
                   <input type="text" id="statusId" class="form-control" placeholder="GRIEVA/2024/XXXXXX" style="text-transform:uppercase;letter-spacing:1px;font-size:1rem;" required>
                 </div>
                 <div style="display:flex;align-items:flex-end;padding-bottom:20px;">
-                  <button type="submit" class="btn btn-primary btn-lg" data-i18n="status.btn" style="white-space:nowrap;">📋 Get Status</button>
+                  <button type="submit" class="btn btn-primary btn-lg" data-i18n="btn.status" style="white-space:nowrap;">📋 Get Status</button>
                 </div>
               </div>
             </form>
@@ -66,7 +67,7 @@
         <!-- Portal Statistics -->
         <div class="card" style="margin-top:28px;">
           <div class="card-header">
-            <h3>📊 Portal Status Overview (Live)</h3>
+            <h3>📊 <span data-i18n="feat.tag">Portal</span> Status Overview</h3>
           </div>
           <div class="card-body">
             <div class="grid-4">
@@ -76,15 +77,15 @@
               </div>
               <div style="text-align:center;padding:14px;background:var(--success-light);border-radius:var(--radius);border:1px solid #b7e4c7;">
                 <div style="font-size:1.6rem;font-weight:700;color:var(--success);font-family:var(--font-serif);">2,13,490</div>
-                <div style="font-size:0.75rem;color:var(--success);margin-top:4px;">Resolved</div>
+                <div style="font-size:0.75rem;color:var(--success);margin-top:4px;" data-i18n="stat.resolved">Resolved</div>
               </div>
               <div style="text-align:center;padding:14px;background:var(--warning-light);border-radius:var(--radius);border:1px solid #f6c14e;">
                 <div style="font-size:1.6rem;font-weight:700;color:var(--warning);font-family:var(--font-serif);">23,840</div>
-                <div style="font-size:0.75rem;color:var(--warning);margin-top:4px;">In Progress</div>
+                <div style="font-size:0.75rem;color:var(--warning);margin-top:4px;" data-i18n="dash.kpi.prog">In Progress</div>
               </div>
               <div style="text-align:center;padding:14px;background:var(--info-light);border-radius:var(--radius);border:1px solid #bee3f8;">
                 <div style="font-size:1.6rem;font-weight:700;color:var(--info);font-family:var(--font-serif);">11,233</div>
-                <div style="font-size:0.75rem;color:var(--info);margin-top:4px;">Pending</div>
+                <div style="font-size:0.75rem;color:var(--info);margin-top:4px;" data-i18n="dash.kpi.pend">Pending</div>
               </div>
             </div>
 
@@ -229,6 +230,7 @@
   </div>
 
   <div id="site-footer-placeholder"></div>
+  <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>

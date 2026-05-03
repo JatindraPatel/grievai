@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departments | GrievAI – Government of India</title>
- <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
@@ -20,16 +21,16 @@
 
   <div class="page-hero">
     <div class="page-hero-inner">
-      <h1 data-i18n="page.dept.title" style="">🏛️ Government Departments</h1>
-      <p>Select the appropriate department to file or view grievances. Each department has a dedicated grievance cell.</p>
+      <h1 data-i18n="page.dept.h1">🏛️ Government Departments</h1>
+      <p data-i18n="page.dept.desc">Select the appropriate department to file or view grievances. Each department has a dedicated grievance cell.</p>
     </div>
   </div>
 
   <div class="page-content">
 
     <div class="section-header" style="margin-bottom:28px;">
-      <span class="section-tag">All Departments</span>
-      <h2>Browse by Department</h2>
+      <span class="section-tag" data-i18n="dept.tag">All Departments</span>
+      <h2 data-i18n="dept.table.title">Browse by Department</h2>
       <p>GrievAI covers 5 major departments across all States and Union Territories of India. Each department has dedicated officers and stipulated resolution timelines.</p>
     </div>
 
@@ -68,7 +69,7 @@
         <div class="dept-card-footer">
           <div class="dept-stat">Resolution: <span>15 Working Days</span></div>
           <div class="dept-stat">Cases This Month: <span>4,821</span></div>
-          <a href="index.html#lodge" class="btn btn-primary btn-sm">File Complaint</a>
+          <a href="index.html#lodge" class="btn btn-primary btn-sm" data-i18n="btn.lodge">File Complaint</a>
         </div>
       </div>
 
@@ -245,11 +246,11 @@
         <table class="data-table">
           <thead>
             <tr>
-              <th>Department</th>
+              <th data-i18n="dept.th.name">Department</th>
               <th>Total Complaints (2024)</th>
               <th>Resolved</th>
               <th>Pending</th>
-              <th>Avg. Resolution Time</th>
+              <th data-i18n="dept.th.time">Avg. Resolution Time</th>
               <th>Satisfaction</th>
             </tr>
           </thead>
@@ -312,6 +313,7 @@
   </div>
 
   <div id="site-footer-placeholder"></div>
+  <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>

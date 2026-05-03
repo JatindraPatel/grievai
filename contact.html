@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | GrievAI – Government of India</title>
- <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Devanagari:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Bengali:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Telugu:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Tamil:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Malayalam:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Kannada:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gujarati:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Gurmukhi:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Sans+Odia:wght@400;600;700<link rel="stylesheet" href="css/style.css">family=Noto+Nastaliq+Urdu:wght@400;700<link rel="stylesheet" href="css/style.css">display=swap">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
@@ -20,8 +21,8 @@
 
   <div class="page-hero">
     <div class="page-hero-inner">
-      <h1 data-i18n="page.contact.title">📞 Contact Us</h1>
-      <p>Reach out to our helpdesk for assistance with your grievances. We respond within 2 working days.</p>
+      <h1 data-i18n="page.contact.h1">📞 Contact Us</h1>
+      <p data-i18n="page.contact.desc">Reach out to our helpdesk for assistance with your grievances. We respond within 2 working days.</p>
     </div>
   </div>
 
@@ -67,7 +68,7 @@
           <div class="form-section-header">
             <div class="form-section-icon">✉️</div>
             <div>
-              <h2>Send Us a Message</h2>
+              <h2 data-i18n="page.contact.h1">Send Us a Message</h2>
               <p>We'll respond within 2 working days</p>
             </div>
           </div>
@@ -75,20 +76,20 @@
             <form id="contactForm" novalidate>
               <div class="form-row">
                 <div class="form-group">
-                  <label for="cName">Full Name <span class="required">*</span></label>
+                  <label for="cName"><span data-i18n="form.name">Full Name</span> <span class="required">*</span></label>
                   <input type="text" id="cName" name="name" class="form-control" placeholder="Your full name" required>
                 </div>
                 <div class="form-group">
-                  <label for="cMobile">Mobile Number <span class="required">*</span></label>
+                  <label for="cMobile"><span data-i18n="form.mobile">Mobile Number</span> <span class="required">*</span></label>
                   <input type="tel" id="cMobile" name="mobile" class="form-control" placeholder="10-digit mobile" maxlength="10" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="cEmail">Email Address <span class="required">*</span></label>
+                <label for="cEmail"><span data-i18n="form.email">Email Address</span> <span class="required">*</span></label>
                 <input type="email" id="cEmail" name="email" class="form-control" placeholder="your@email.com" required>
               </div>
               <div class="form-group">
-                <label for="cCategory">Query Category <span class="required">*</span></label>
+                <label for="cCategory"><span data-i18n="form.dept">Category</span> <span class="required">*</span></label>
                 <select id="cCategory" name="category" class="form-control" required>
                   <option value="">-- Select Category --</option>
                   <option>Complaint Filing Help</option>
@@ -104,7 +105,7 @@
                 <input type="text" id="cComplaintId" name="complaintId" class="form-control" placeholder="GRIEVA/YYYY/XXXXXX" style="text-transform:uppercase;">
               </div>
               <div class="form-group">
-                <label for="cMessage">Message <span class="required">*</span></label>
+                <label for="cMessage"><span data-i18n="bot.input.ph">Message</span> <span class="required">*</span></label>
                 <textarea id="cMessage" name="message" class="form-control" rows="5" placeholder="Describe your query or issue in detail…" required></textarea>
               </div>
               <div class="form-group">
@@ -204,6 +205,7 @@
   </div>
 
   <div id="site-footer-placeholder"></div>
+  <script src="js/camera.js"></script>
   <script src="js/lang.js"></script>
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>
