@@ -2819,9 +2819,17 @@ body.lang-rtl .chatbot-close { margin-left: 0; margin-right: auto; }
   padding: 0 20px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 12px;
   min-height: 46px;
+}
+
+/* ── Right section (Login button) ─────────────── */
+.cpgrams-right-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
 }
 
 /* ── Language Section ────────────────────────────── */
@@ -3357,4 +3365,54 @@ body.lang-rtl .chatbot-close { margin-left: 0; margin-right: auto; }
     width: 100%;
     justify-content: center;
   }
+}
+
+/* ── Google Translate Integration ───────────────── */
+#google_translate_element { display: none !important; }
+.goog-te-banner-frame { display: none !important; }
+.goog-te-menu-value { display: none !important; }
+body { top: 0 !important; }
+.skiptranslate { display: none !important; }
+
+/* ── AI Department Detection Box ────────────────── */
+.ai-dept-result {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ai-dept-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ai-dept-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.ai-dept-name {
+  font-family: var(--font-serif);
+}
+
+/* ── Camera Section Enhancements ─────────────────── */
+.camera-status--loading {
+  background: var(--info-light);
+  color: var(--info);
+  border: 1px solid #bee3f8;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.83rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.camera-status--success {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid #b7e4c7;
+}
+.camera-status--error {
+  background: var(--error-light);
+  color: var(--error);
+  border: 1px solid #f5b7b1;
 }
