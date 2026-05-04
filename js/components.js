@@ -64,7 +64,7 @@
     return (
       '<div class="nav-right-group">' +
         // Language dropdown
-        '<div class="nav-lang-wrap" id="cpgramsDropdown">' +
+        '<div class="nav-lang-wrap lang-desktop" id="cpgramsDropdown">' +
           '<button class="nav-lang-btn" id="cpgramsDropBtn" aria-haspopup="listbox" aria-expanded="false">' +
             '<span>🌐</span>' +
             '<span id="cpgramsSelectedText">' + currentLabel + '</span>' +
@@ -141,7 +141,17 @@
           <span></span><span></span><span></span>\
         </button>\
       </div>\
-    </nav>';
+    </nav>\
+    <!-- ── Mobile Language Bar (below nav, visible on mobile only) ── -->\
+    <div class="lang-mobile-bar lang-mobile" id="mobileLangBar" role="navigation" aria-label="Language Selection">\
+      <span class="lang-mobile-bar-label">🌐 Language:</span>\
+      <div class="lang-mobile-scroll">' +
+        CPGRAMS_LANGUAGES.map(function(l){
+          var cur = getSavedLang();
+          return '<button class="lang-mobile-item' + (l.code === cur ? ' active' : '') + '" data-code="' + l.code + '" aria-pressed="' + (l.code === cur ? 'true' : 'false') + '">' + l.label + '</button>';
+        }).join('') +
+      '</div>\
+    </div>';
   }
 
   // ── ORIGINAL footer (untouched) ─────────────────
