@@ -397,3 +397,62 @@
     height: 72vh;
   }
 }
+
+/* ── Language Picker (shown on chatbot open) ─────── */
+.cb-lang-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0 8px 38px;
+  animation: cbMsgIn 0.22s ease;
+}
+
+.cb-lang-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  background: #fff;
+  border: 1.5px solid #c7d9f5;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.16s, border-color 0.16s, transform 0.12s;
+  width: 100%;
+}
+.cb-lang-btn:hover {
+  background: #003366;
+  border-color: #003366;
+  transform: translateX(3px);
+}
+.cb-lang-btn:hover .cb-lang-main,
+.cb-lang-btn:hover .cb-lang-sub { color: #fff; }
+
+.cb-lang-main {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #003366;
+  transition: color 0.16s;
+}
+.cb-lang-sub {
+  font-size: 0.72rem;
+  color: #718096;
+  transition: color 0.16s;
+}
+
+/* ── Disabled input state ────────────────────────── */
+.cb-input:disabled {
+  background: #f0f4f8;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+.cb-send-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.cb-send-btn:disabled:hover { transform: none; }
+
+/* ── Clear button hover ──────────────────────────── */
+#cbClearBtn:hover { background: rgba(192,57,43,0.2); }

@@ -3452,12 +3452,116 @@ body.lang-rtl .chatbot-close { margin-left: 0; margin-right: auto; }
   text-decoration: none !important;
 }
 
-/* Hide nav-right on mobile, show in hamburger menu instead */
-@media (max-width: 768px) {
-  .nav-right-group { display: none; }
-}
+/* Handled by .lang-desktop / .lang-mobile utility classes below */
 
 /* AI dept detection box */
 .ai-dept-result { display: flex; flex-direction: column; gap: 6px; }
 .ai-dept-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .ai-dept-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+/* ====================================================
+   RESPONSIVE LANGUAGE VISIBILITY CONTROL
+   Strict breakpoint: 768px desktop / 767px mobile
+   Uses dedicated utility classes only — no collisions
+   ==================================================== */
+
+/* ── Utility Classes (Mobile-first defaults) ─────── */
+
+/* Header language dropdown → hidden on mobile by default */
+.lang-desktop {
+  display: none !important;
+}
+
+/* Bottom language bar → visible on mobile by default */
+.lang-mobile {
+  display: flex !important;
+}
+
+/* ── Desktop / Tablet ≥ 768px ────────────────────── */
+@media (min-width: 768px) {
+  .lang-desktop {
+    display: flex !important;   /* restores nav-lang-wrap flex layout */
+  }
+  .lang-mobile {
+    display: none !important;   /* removes bar from layout — zero space */
+  }
+}
+
+/* ── Mobile Language Bar Styling ─────────────────── */
+.lang-mobile-bar {
+  background: #002855;          /* same navy as nav, seamless look */
+  border-top: 1px solid rgba(255,255,255,0.10);
+  border-bottom: 2px solid var(--saffron, #FF6600);
+  padding: 7px 14px;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  /* display controlled by .lang-mobile above */
+}
+
+.lang-mobile-bar-label {
+  color: rgba(255,255,255,0.70);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.3px;
+}
+
+.lang-mobile-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex: 1;
+}
+.lang-mobile-scroll::-webkit-scrollbar { display: none; }
+
+.lang-mobile-item {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.82);
+  border-radius: 20px;
+  padding: 4px 11px;
+  font-size: 0.73rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  /* Accessible touch target */
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+}
+.lang-mobile-item:hover {
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+.lang-mobile-item.active {
+  background: var(--saffron, #FF6600);
+  border-color: var(--saffron, #FF6600);
+  color: #fff;
+  font-weight: 700;
+}
+/* Focus ring for keyboard/screen-reader users */
+.lang-mobile-item:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Guarantee hidden elements are not focusable/clickable */
+.lang-desktop[style*="none"],
+.lang-mobile[style*="none"] {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+/* ── Zero layout-shift guarantee ─────────────────── */
+/* nav-right-group stays in flex flow on desktop via lang-desktop */
+/* On mobile it is display:none so contributes 0px to layout */
